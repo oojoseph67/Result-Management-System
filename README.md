@@ -1,2 +1,4 @@
-# rms
- my final year project
+# Result Management System
+ My Final Year Project
+
+FUPRE
