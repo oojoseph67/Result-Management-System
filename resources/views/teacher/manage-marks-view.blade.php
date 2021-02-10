@@ -1,4 +1,4 @@
-@extends('layouts.backend-data-operator')
+@extends('layouts.backend-teacher')
 
 @section('css_before')
     <!-- Page JS Plugins CSS -->
@@ -27,13 +27,13 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
-                    Manage<small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Result</small>
+                    Manage<small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Marks</small>
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">School Management</li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Manage Result</a>
+                            <a class="link-fx" href="">Manage Marks</a>
                         </li>
                     </ol>
                 </nav>
@@ -47,7 +47,7 @@
         <!-- Your Block -->
         <div class="block">
             <div class="block-header">
-                <h3 class="block-title">Manage Result</h3>
+                <h3 class="block-title">Manage Marks</h3>
             </div>
             <div class="block-content">
 
@@ -72,18 +72,19 @@
                 </div>
 
                 
-                <!-- Manage Result -->
+                <!-- Manage Marks -->
                     <h2 class="content-heading border-bottom mb-4 pb-2"></h2>
-                    <form action="{{ route('manage-results-class') }}" method="">
+                    <form action="{{ route('manage-marks-class') }}" method="">
                         @csrf
                         <div class="row items-push">
                             <div class="col-lg-4">
                                 <p class="font-size-sm text-muted">
-                                   Select the particular class you will like to manage student result.
+                                   Select the particular class you will like to manage subject marks.
                                 </p>
+                                <small>You can only edit for the subject you are assigned to</small>
                             </div>
                             <div class="col-lg-8 col-xl-5">
-                                {{-- <div class="form-group">
+                                <div class="form-group">
                                     <label for="val-skill">Select Subject <span class="text-danger">*</span></label>
                                     <select class="form-control" name="subject_name" required>
                                         <option value="">Please select</option>
@@ -93,7 +94,7 @@
                                             @endforeach
                                         @endif 
                                     </select>
-                                </div> --}}
+                                </div>
                                  <div class="form-group">
                                     <label for="val-skill">Select Class <span class="text-danger">*</span></label>
                                     <select class="form-control" name="class" required>
@@ -107,65 +108,13 @@
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-block btn-success">
-                                        <i class="fa fa-fw fa-plus mr-1"></i> Manage Class Result
+                                        <i class="fa fa-fw fa-plus mr-1"></i> Manage Class Mark
                                     </button>
                                 </div>
                             </div>                    
                         </div>
                     </form>
-                <!-- END Manage Result -->
-
-
-                 <!-- Full Table -->
-                 <div class="block">
-                    <div class="block-header">
-                        <h3 class="block-title">List Of Student For {{$class}} </h3>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option">
-                                <i class="si si-settings"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="block-content">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center" style="width: 100px;">
-                                            <i class="far fa-user"></i>
-                                        </th>
-                                        <th>Name</th>
-                                        <th style="width: 30%;">Class</th>
-                                        <th class="text-center" style="width: 100px;">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($user as $users)
-                                        <tr>
-                                            <td class="text-center">
-                                                <img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar2.jpg') }}" alt="">
-                                            </td>
-                                            <td class="font-w600 font-size-sm">
-                                                <a href="">{{ $users->name }}</a>
-                                            </td>
-                                            <td class="font-size-sm"><em class="text-muted">{{ $users->current_class }}</em></td>
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    <a class="btn btn-sm btn-secondary push" href="/dop/single-result/{{$users->current_class}}/{{$users->name}}">Edit</a>
-                                                    {{-- <a class="btn btn-sm btn-secondary push" href="{{ route('single-result', $users->id,$user->name) }}">Edit</a> --}}
-                                                    {{-- <button type="button" class="btn btn-sm btn-danger push" data-toggle="modal" data-target="#delete{{ $data->id }}" title="Delete">
-                                                        <i class="fa fa-fw fa-times"></i>
-                                                    </button> --}}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            <!-- END Full Table -->
+                <!-- END Manage Marks -->
 
 
             </div>

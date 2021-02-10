@@ -26,13 +26,16 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
-                    Main Title <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Subtitle</small>
+                    View <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Student</small>
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">Examples</li>
+                        <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Blank</a>
+                            <a class="link-fx" href="">View Student</a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            <a class="link-fx" href="">List of student for {{$class}} {{$subject_name}} </a>
                         </li>
                     </ol>
                 </nav>
@@ -50,7 +53,7 @@
             </div>
             <div class="block-content">
                 <p class="font-size-sm text-muted">
-                    Your content..
+                   This is a list of students in {{$class}} for {{$subject_name}}
                 </p>
 
                 <div class="card-box">
@@ -71,17 +74,45 @@
                             </button>
                         </div>
                     @endif
-                    
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                 </div>
+
+                    <!-- List Of Subject -->
+                    <h2 class="content-heading border-bottom mb-4 pb-2"></h2>
+                    <div class="block">
+                        <div class="block-header">
+                            <h3 class="block-title">List Of Subject</h3>
+                        </div>
+                        <div class="block-content">
+                            <table class="table table-borderless table-vcenter table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 50px;">#</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Date Of Birth</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($students as $data)
+                                        <tr class="table-active">
+                                            <th class="text-center" scope="row">#</th>
+                                            <td class="font-w600 font-size-sm">
+                                                <a href="">{{$data->name}}</a>
+                                            </td>
+                                            <td class="font-w600 font-size-sm">{{$data->email}}</td>
+                                            <td class="font-w600 font-size-sm">{{$data->dob}}</td>
+                                        </tr>   
+                                    @empty
+                                        <h1> No Student In {{$class}} For {{$subject_name}} </h1>
+                                    @endforelse                                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <!-- END List Of Subject -->
+                
+
+
             </div>
         </div>
         <!-- END Your Block -->

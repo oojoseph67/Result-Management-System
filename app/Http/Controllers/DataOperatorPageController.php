@@ -202,14 +202,20 @@ class DataOperatorPageController extends Controller
 
         // return 123;
         //return $request->input('email');
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'dob' => ['required', 'date'],
+        ]);
+
+
         DB::table('users')->where(
-            'id',
-            $request->input('id')
+            'id', $request->input('id')
         )->update(
             [
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'dob' => $request->input('dob')
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'dob' => $request['dob'],
             ],
         );
         return back()->withStatus(__($request->input('name') . ' Profile Successfully Updated'));
@@ -380,9 +386,62 @@ class DataOperatorPageController extends Controller
             'class', $class
         )->get();
 
+        $class_avg = DB::table('results')->where(
+            'class', $class
+        )->avg('total');
+
+        $user_avg  = DB::table('results')->where(
+            'class', $class
+        )->where(
+            'name', $name
+        )->avg('total');
+
+        $total_in_class = DB::table('results')->where(
+            'class', $class
+        )->count('class');
+        
         return view('data-operator.manage-single-result', [
             'name' => $name,
             'class' => $class,
+            'result' => $result,
+            'class_avg' => $class_avg,
+            'user_avg' => $user_avg,
+            'total_in_class' => $total_in_class,
+        ]);
+    }
+
+    public function printResult(Request $request)
+    {
+        $class = $request->input('class');
+        $name = $request->input('name');
+
+        $result = DB::table('results')->where(
+            'name' ,$name
+        )->where(
+            'class', $class
+        )->get();
+
+        $class_avg = DB::table('results')->where(
+            'class', $class
+        )->avg('total');
+
+        $user_avg  = DB::table('results')->where(
+            'class', $class
+        )->where(
+            'name', $name
+        )->avg('total');
+
+        $total_in_class = DB::table('results')->where(
+            'class', $class
+        )->count('class');
+        
+        return view('data-operator.print-result', [
+            'name' => $name,
+            'class' => $class,
+            'result' => $result,
+            'class_avg' => $class_avg,
+            'user_avg' => $user_avg,
+            'total_in_class' => $total_in_class,
         ]);
     }
 

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\DataOperatorPageController;
+use App\Http\Controllers\TeacherPageController;
+use FontLib\Table\Type\name;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,12 +76,24 @@ Route::group(['middleware' => ['auth', 'data-operator'], 'prefix' => 'dop'], fun
 
     Route::get('/manage-results', [DataOperatorPageController::class, 'manageResults'])->name('manage-results');    
     Route::get('/manage-results-class', [DataOperatorPageController::class, 'manageResults'])->name('manage-results-class');
-    Route::get('/single-result/{{class}}/{{name}}', [DataOperatorPageController::class, 'singleResult']);
+    Route::get('/single-result/{class}/{name}', [DataOperatorPageController::class, 'singleResult'])->name('single-result');
+    Route::get('/print-result', [DataOperatorPageController::class, 'printResult'])->name('print-result');
 });
 
 
 Route::group(['middleware' => ['auth', 'teacher'], 'prefix' => 'tea'], function () {
     Route::view('/', 'teacher.home')->name('teacher.home');
+
+    Route::get('/view-students', [TeacherPageController::class, 'viewStudents'])->name('view-students');
+    Route::get('/view-stu-action', [TeacherPageController::class, 'viewStudentAction'])->name('view-student-action');
+
+    Route::get('/manage-marks', [TeacherPageController::class, 'manageMarks'])->name('manage-marks');
+    Route::get('/manage-marks-class', [TeacherPageController::class, 'manageMarksClass'])->name('manage-marks-class');
+    Route::post('/edit-marks', [TeacherPageController::class, 'editMarks'])->name('edit-marks');
+    
+    Route::get('/profile', [TeacherPageController::class, 'profile'])->name('profile');    
+    Route::post('/edit-profile', [TeacherPageController::class, 'editProfile'])->name('edit-profile');
+    Route::post('/change-password', [TeacherPageController::class, 'changePassword'])->name('change-password');
 });
 
 Route::group(['middleware' => ['auth', 'student'], 'prefix' => 'stu'], function () {

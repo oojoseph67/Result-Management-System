@@ -52,40 +52,34 @@
                 <div class="content-side content-side-full">
                     <ul class="nav-main">
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('student.home') }}">
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('teacher.home') }}">
                                 <i class="nav-main-link-icon si si-cursor"></i>
                                 <span class="nav-main-link-name">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-main-heading">Various</li>
+                        <li class="nav-main-heading">View Records</li>
                         <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                            <a class="nav-main-link nav-main-link" href="{{ route('view-students') }}">
                                 <i class="nav-main-link-icon si si-bulb"></i>
-                                <span class="nav-main-link-name">Examples</span>
+                                <span class="nav-main-link-name">View Students</span>
                             </a>
-                            <ul class="nav-main-submenu">
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="">
-                                        <span class="nav-main-link-name">DataTables</span>
-                                    </a>
-                                </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="">
-                                        <span class="nav-main-link-name">Slick Slider</span>
-                                    </a>
-                                </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('pages/blank') ? ' active' : '' }}" href="">
-                                        <span class="nav-main-link-name">Blank</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-                        <li class="nav-main-heading">More</li>
+                        <li class="nav-main-heading">School Management</li>
                         <li class="nav-main-item open">
-                            <a class="nav-main-link" href="">
+                            <a class="nav-main-link" href="{{ route('manage-marks') }}">
                                 <i class="nav-main-link-icon si si-globe"></i>
-                                <span class="nav-main-link-name">Landing</span>
+                                <span class="nav-main-link-name">Manage Marks</span>
+                            </a>
+                            {{-- <a class="nav-main-link" href="{{ route('manage-results') }}">
+                                <i class="nav-main-link-icon si si-globe"></i>
+                                <span class="nav-main-link-name">Manage Results</span>
+                            </a> --}}
+                        </li>
+                        <li class="nav-main-heading">Profile</li>
+                        <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                            <a class="nav-main-link nav-main-link" href="{{ route('profile') }}">
+                                <i class="nav-main-link-icon si si-bulb"></i>
+                                <span class="nav-main-link-name">Profile</span>
                             </a>
                         </li>
                     </ul>
@@ -123,7 +117,7 @@
                         <div class="dropdown d-inline-block ml-2">
                             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="Header Avatar" style="width: 18px;">
-                                <span class="d-none d-sm-inline-block ml-1">Adam</span>
+                                <span class="d-none d-sm-inline-block ml-1">{{auth()->user()->name}}</span> <small><b>Teacher</b></small></span>
                                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">

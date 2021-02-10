@@ -63,13 +63,20 @@ class AdminPageController extends Controller
 
         // return 123;
         //return $request->input('email');
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'dob' => ['required', 'date'],
+        ]);
+
+
         DB::table('users')->where(
             'id', $request->input('id')
         )->update(
             [
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'dob' => $request->input('dob')
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'dob' => $request['dob'],
             ],
         );
         return back()->withStatus(__($request->input('name') .' Profile Successfully Updated'));
@@ -98,6 +105,11 @@ class AdminPageController extends Controller
         } else {
             return back()->withError(__('Delete failed.... Not Admin[wrong password]'));
         }
+    }
+
+    public function generateResults(Request $request)
+    {
+        
     }
 
 }

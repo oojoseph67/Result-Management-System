@@ -1,4 +1,4 @@
-@extends('layouts.backend-data-operator')
+@extends('layouts.backend-teacher')
 
 @section('css_before')
     <!-- Page JS Plugins CSS -->
@@ -33,10 +33,10 @@
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">School Management</li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="{{ route('manage-results') }}">Manage Result</a>
+                            <a class="link-fx" href="{{ route('manage-marks') }}">Manage Marks</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Manage {{$name}} Result</a>
+                            <a class="link-fx" href="">Manage Class Marks</a>
                         </li>
                     </ol>
                 </nav>
@@ -50,7 +50,7 @@
         <!-- Your Block -->
         <div class="block">
             <div class="block-header">
-                <h3 class="block-title">Manage <small>{{$name}}</small> Result</h3>
+                <h3 class="block-title">Manage Marks</h3>
             </div>
             <div class="block-content">
 
@@ -95,75 +95,39 @@
                 <!-- Full Table -->
                     <div class="block">
                         <div class="block-header">
-                            <h3 class="block-title"><small>{{$name}} </small> Result</h3>
+                            <h3 class="block-title">List Of Student For {{$class}} For Subject {{$subject_name}}</h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option">
                                     <i class="si si-settings"></i>
                                 </button>
                             </div>
                         </div>
-                        <h1 class="text-center">
-                            <span class="font-w600 font-size-sm">{{$name}}</span>
-                            <br>
-                            <img class="img-avatar img-avatar59" src="{{ asset('media/avatars/avatar2.jpg') }}" alt="">
-                            <br>
-                            <span class="font-w600 font-size-sm">
-                                Class Average : {{$class_avg}}
-                            </span>
-                            <span class="font-w600 font-size-sm">
-                                Total In Class : {{$total_in_class}}
-                            </span>
-                            <br>
-                            <span class="font-w600 font-size-sm">
-                                {{$name}} Average : {{$user_avg}}
-                            </span>
-                            <form action="{{ route('print-result') }}">
-                                @csrf
-                                <input type="hidden" name="name" value="{{$name}}">
-                                <input type="hidden" name="class" value="{{$class}}">
-                                {{-- <div class="form-group row">
-                                    <a href="" type="submit" class="btn btn-block btn-primary" target="_blank">Proceed To Print</a>
-                                </div> --}}
-                                <div class="form-group row">
-                                        <button type="submit" class="btn btn-block btn-primary">
-                                            <i class="fa fa-fw fa-plus mr-1"></i> Proceed To Print
-                                        </button>
-                                </div>
-                            </form>
-                            {{-- <div class="form-group row">
-                                <div class="col-md-6 col-xl-5">
-                                    <button onclick="window.print()" class="btn btn-block btn-primary">
-                                        <i class="fa fa-fw fa-plus mr-1"></i> Print
-                                    </button>
-                                </div>
-                            </div> --}}
-                        </h1>
                         <div class="block-content">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                     <thead>
                                         <tr>
-                                            {{-- <th class="text-center" style="width: 100px;">
+                                            <th class="text-center" style="width: 100px;">
                                                 <i class="far fa-user"></i>
-                                            </th> --}}
-                                            {{-- <th>Name</th> --}}
+                                            </th>
+                                            <th>Name</th>
                                             <th style="width: 30%;">Class</th>
                                             <th style="width: 15%;">Subject</th>
                                             <th class="text-center" style="width: 100px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($result as $data)
+                                        @foreach ($data as $data)
                                             <tr>
-                                                {{-- <td class="text-center">
+                                                <td class="text-center">
                                                     <img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar2.jpg') }}" alt="">
-                                                </td> --}}
-                                                {{-- <td class="font-w600 font-size-sm">
+                                                </td>
+                                                <td class="font-w600 font-size-sm">
                                                     <a href="">{{ $data->name }}</a>
-                                                </td> --}}
-                                                <td class="font-size-sm"><em class="text-muted">{{ $data->class }}</em></td>
+                                                </td>
+                                                <td class="font-size-sm"><em class="text-muted">{{ $data->current_class }}</em></td>
                                                 <td>
-                                                    <span class="badge badge-secondary">{{ $data->subject_name }}</span>
+                                                    <span class="badge badge-primary">{{$subject_name}}</span>
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
@@ -197,38 +161,42 @@
                                                                             <h4 class="bolck-title danger">Total score will update after the subjects column has been updated</h4>
                                                                             <input type="hidden" name="id" value="{{ $data->id }}">
                                                                             <input type="hidden" name="class" value="{{$class}}">
-                                                                            <input type="hidden" name="subject_name" value="{{$data->subject_name}}">
+                                                                            <input type="hidden" name="subject_name" value="{{$subject_name}}">
                                                                             <input type="hidden" name="student_name" value="{{ $data->name }}">
                                                                             
-                                                                            @if (DB::table('results')->where('name', $data->name)->where('subject_name', $data->subject_name)->exists())                                                                              
-                                                                                <div class="form-group">
-                                                                                    <label for="subject"> Attendance Score <span class="text-danger">*</span></label>
-                                                                                    <input type="number" name="attendance_score" class="form-control" value="{{$data->attendance_score}}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="subject"> 1st Test <span class="text-danger">*</span></label>
-                                                                                    <input type="number" name="first_test" class="form-control" value="{{$data->first_test}}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="subject"> 2nd Test <span class="text-danger">*</span></label>
-                                                                                    <input type="number" name="second_test" class="form-control" value="{{$data->second_test}}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="subject"> 3rd Test <span class="text-danger">*</span></label>
-                                                                                    <input type="number" name="thrid_test" class="form-control" value="{{$data->thrid_test}}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="subject"> Quiz <span class="text-danger">*</span></label>
-                                                                                    <input type="number" name="quiz" class="form-control" value="{{$data->quiz}}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="subject"> Exam Score<span class="text-danger">*</span></label>
-                                                                                    <input type="number" name="exam_score" class="form-control" value="{{$data->exam_score}}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="subject"> Total <small>Total score shows here</small><span class="text-danger">*</span></label>
-                                                                                    <input type="number" name="total" disabled placeholder="Total score shows here" class="form-control" value="{{$data->total}}">
-                                                                                </div>                                                                                    
+                                                                            @if (DB::table('results')->where('name', $data->name)->where('subject_name', $subject_name)->exists())
+                                                                                @foreach ($result as $result_data)
+                                                                                    @if ($result_data->name == $data->name)
+                                                                                        <div class="form-group">
+                                                                                            <label for="subject"> Attendance Score <span class="text-danger">*</span></label>
+                                                                                            <input type="number" name="attendance_score" class="form-control" value="{{$result_data->attendance_score}}">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="subject"> 1st Test <span class="text-danger">*</span></label>
+                                                                                            <input type="number" name="first_test" class="form-control" value="{{$result_data->first_test}}">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="subject"> 2nd Test <span class="text-danger">*</span></label>
+                                                                                            <input type="number" name="second_test" class="form-control" value="{{$result_data->second_test}}">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="subject"> 3rd Test <span class="text-danger">*</span></label>
+                                                                                            <input type="number" name="thrid_test" class="form-control" value="{{$result_data->thrid_test}}">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="subject"> Quiz <span class="text-danger">*</span></label>
+                                                                                            <input type="number" name="quiz" class="form-control" value="{{$result_data->quiz}}">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="subject"> Exam Score<span class="text-danger">*</span></label>
+                                                                                            <input type="number" name="exam_score" class="form-control" value="{{$result_data->exam_score}}">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="subject"> Total <small>Total score shows here</small><span class="text-danger">*</span></label>
+                                                                                            <input type="number" name="total" disabled placeholder="Total score shows here" class="form-control" value="{{$result_data->total}}">
+                                                                                        </div>
+                                                                                    @endif                                                                               
+                                                                                @endforeach
                                                                             @else
                                                                                 <div class="form-group">
                                                                                     <label for="subject"> Attendance Score <span class="text-danger">*</span></label>
