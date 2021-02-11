@@ -70,7 +70,7 @@
                                 <span class="nav-main-link-name">Assign Teachers</span>
                             </a>
                         </li>
-                        <li class="nav-main-heading">School Management</li>
+                        <li class="nav-main-heading">Account Management</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('manage-users') }}">
                                 <i class="nav-main-link-icon si si-cursor"></i>
@@ -83,7 +83,8 @@
                                 <span class="nav-main-link-name">Manage Marks</span>
                             </a>
                         </li>
-                         <li class="nav-main-item">
+                        <li class="nav-main-heading">Result Management</li>
+                        <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('manage-results') }}">
                                 <i class="nav-main-link-icon si si-cursor"></i>
                                 <span class="nav-main-link-name">Manage Result</span>

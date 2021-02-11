@@ -152,9 +152,34 @@ class AdminPageController extends Controller
         }
     }
 
-    public function ResetCalendar()
+    public function reset()
     {
-        
+        $results_data = Result::all();
+
+        return view('admin.reset', [
+            'results_data' => $results_data
+        ]);
+    }
+
+    public function ResetCalendar(Request $request)
+    {
+        $input_password = $request->input('password');
+        $user_password = auth()->user()->password;
+
+        if (Hash::check($input_password, $user_password)) {
+
+            DB::table('users')->update(
+                [
+                    'session' => $request->input('session'),
+                    'term' => 'First Term'
+                ]
+            );
+
+            return back()->withStatus(__('Reset Successfuly. Current Session is ' . Auth::user()->session . ' And Term ' . Auth::user()->term));
+
+        } else {
+            return back()->withError(__('Rest failed.... Not Admin[wrong password]'));
+        }
     }
 
 }

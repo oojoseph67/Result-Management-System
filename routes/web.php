@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'ad'], function () 
 
     Route::view('/generate-result', 'admin.generate-result')->name('generate-result');
     Route::post('/generate-results', [AdminPageController::class, 'generateResults'])->name('generate-results');
+
+    Route::get('/reset', [AdminPageController::class, 'reset'])->name('reset');
+    Route::post('/reset-calendar', [AdminPageController::class, 'resetCalendar'])->name('reset-calendar');
 });
 
 
