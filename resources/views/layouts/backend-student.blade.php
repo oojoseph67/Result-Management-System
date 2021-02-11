@@ -57,35 +57,22 @@
                                 <span class="nav-main-link-name">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-main-heading">Various</li>
+                        <li class="nav-main-heading">School Management</li>
                         <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                            <a class="nav-main-link nav-main-link" href="#">
                                 <i class="nav-main-link-icon si si-bulb"></i>
-                                <span class="nav-main-link-name">Examples</span>
+                                <span class="nav-main-link-name">Current Result</span>
                             </a>
-                            <ul class="nav-main-submenu">
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="">
-                                        <span class="nav-main-link-name">DataTables</span>
-                                    </a>
-                                </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="">
-                                        <span class="nav-main-link-name">Slick Slider</span>
-                                    </a>
-                                </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('pages/blank') ? ' active' : '' }}" href="">
-                                        <span class="nav-main-link-name">Blank</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <a class="nav-main-link nav-main-link" href="#">
+                                <i class="nav-main-link-icon si si-bulb"></i>
+                                <span class="nav-main-link-name">Previous Result</span>
+                            </a>
                         </li>
-                        <li class="nav-main-heading">More</li>
+                        <li class="nav-main-heading">Profile</li>
                         <li class="nav-main-item open">
-                            <a class="nav-main-link" href="">
+                            <a class="nav-main-link" href=" {{ route('profile') }} ">
                                 <i class="nav-main-link-icon si si-globe"></i>
-                                <span class="nav-main-link-name">Landing</span>
+                                <span class="nav-main-link-name">Profile</span>
                             </a>
                         </li>
                     </ul>

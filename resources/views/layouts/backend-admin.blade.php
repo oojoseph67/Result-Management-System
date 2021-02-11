@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="">
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('generate-result') }}">
                                 <i class="nav-main-link-icon si si-result"></i>
                                 <span class="nav-main-link-name">Genrate Session Result</span>
                             </a>

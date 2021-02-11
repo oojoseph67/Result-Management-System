@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Result;
+use App\Models\AcademicResult;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -108,6 +110,49 @@ class AdminPageController extends Controller
     }
 
     public function generateResults(Request $request)
+    {
+        $input_password = $request->input('password');
+        $user_password = auth()->user()->password;
+
+        if (Hash::check($input_password, $user_password)) {
+            $results_data = Result::all();
+            if ($results_data->isEmpty()) {
+                return back()->withError(__('Result For '. Auth::user()->session .' Session Has Already Genrated'));
+            } else {
+                $result = DB::table('results')->get();
+
+                foreach ($result as $results)
+                {
+                    $academic_results = AcademicResult::create([
+                        'name' => $results->name,
+                        'class' => $results->class,
+                        'subject_name' => $results->subject_name,
+                        'session' => Auth::user()->session,
+                        'term' => Auth::user()->term,
+                        'attendance_score' => $results->attendance_score,
+                        'first_test' => $results->first_test,
+                        'second_test' => $results->second_test,
+                        'thrid_test' => $results->thrid_test,
+                        'quiz' => $results->quiz,
+                        'exam_score' => $results->exam_score,
+                        'total' => $results->total,
+                    ]);
+
+                    $academic_results->save();
+                }
+
+                DB::table('results')->delete();
+
+                return back()->withStatus(__('Generation of result for the '. Auth::user()->session . ' '. Auth::user()->term . ' was successfully'));
+
+            }
+
+        } else {
+            return back()->withError(__('Generation of result failed.... Not Admin[wrong password]'));
+        }
+    }
+
+    public function ResetCalendar()
     {
         
     }

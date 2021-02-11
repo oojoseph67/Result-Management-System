@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->date('dob');
             $table->string('entry_class')->nullable();
             $table->string('current_class')->nullable();
+            $table->string('session')->nullable();
+            $table->string('term')->nullable();
             $table->string('role');
             $table->string('password');
             $table->string('passport_path');

@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+@extends('layouts.backend-student')
 
 @section('css_before')
     <!-- Page JS Plugins CSS -->

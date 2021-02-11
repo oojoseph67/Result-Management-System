@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\DataOperatorPageController;
+use App\Http\Controllers\StudentPageController;
 use App\Http\Controllers\TeacherPageController;
 use FontLib\Table\Type\name;
 
@@ -39,6 +40,9 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'ad'], function () 
 
     Route::post('/edit-user', [AdminPageController::class, 'editUser'])->name('edit-user');
     Route::post('/delete-user', [AdminPageController::class, 'deleteUser'])->name('delete-user');
+
+    Route::view('/generate-result', 'admin.generate-result')->name('generate-result');
+    Route::post('/generate-results', [AdminPageController::class, 'generateResults'])->name('generate-results');
 });
 
 
@@ -99,6 +103,9 @@ Route::group(['middleware' => ['auth', 'teacher'], 'prefix' => 'tea'], function 
 Route::group(['middleware' => ['auth', 'student'], 'prefix' => 'stu'], function () {
     Route::view('/', 'student.home')->name('student.home');
 
+    Route::get('/profile', [StudentPageController::class, 'profile'])->name('profile');
+    Route::post('/edit-profile', [StudentPageController::class, 'editProfile'])->name('edit-profile');
+    Route::post('/change-password', [StudentPageController::class, 'changePassword'])->name('change-password');
 
     // Route::get('/student', function ($id,$code){
     //     session([
