@@ -21,7 +21,7 @@ class CreateResultsTable extends Migration
             $table->integer('attendance_score')->nullable();
             $table->integer('first_test')->nullable();
             $table->integer('second_test')->nullable();
-            $table->integer('thrid_test')->nullable();
+            $table->integer('third_test')->nullable();
             $table->integer('quiz')->nullable();
             $table->integer('exam_score')->nullable();
             $table->integer('total')->nullable();

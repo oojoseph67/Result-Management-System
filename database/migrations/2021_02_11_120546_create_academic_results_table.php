@@ -23,7 +23,7 @@ class CreateAcademicResultsTable extends Migration
             $table->integer('attendance_score');
             $table->integer('first_test');
             $table->integer('second_test');
-            $table->integer('thrid_test');
+            $table->integer('third_test');
             $table->integer('quiz');
             $table->integer('exam_score');
             $table->integer('total');

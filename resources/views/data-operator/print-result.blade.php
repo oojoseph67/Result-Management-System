@@ -81,7 +81,7 @@
                                             <th style="width: 15%;">Attendance</th>
                                             <th style="width: 15%;">First Test</th>
                                             <th style="width: 15%;">Second Test</th>
-                                            <th style="width: 15%;">Thrid Test</th>
+                                            <th style="width: 15%;">Third Test</th>
                                             <th style="width: 15%;">Quiz</th>
                                             <th style="width: 15%;">Exam</th>
                                             <th class="text-center" style="width: 100px;">Total</th>
@@ -109,7 +109,7 @@
                                                     <span class="badge">{{ $data->second_test }}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="badge">{{ $data->thrid_test }}</span>
+                                                    <span class="badge">{{ $data->third_test }}</span>
                                                 </td>
                                                 <td>
                                                     <span class="badge">{{ $data->quiz }}</span>

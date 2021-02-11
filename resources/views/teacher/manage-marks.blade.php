@@ -181,7 +181,7 @@
                                                                                         </div>
                                                                                         <div class="form-group">
                                                                                             <label for="subject"> 3rd Test <span class="text-danger">*</span></label>
-                                                                                            <input type="number" name="thrid_test" class="form-control" value="{{$result_data->thrid_test}}">
+                                                                                            <input type="number" name="third_test" class="form-control" value="{{$result_data->third_test}}">
                                                                                         </div>
                                                                                         <div class="form-group">
                                                                                             <label for="subject"> Quiz <span class="text-danger">*</span></label>
@@ -212,7 +212,7 @@
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="subject"> 3rd Test <span class="text-danger">*</span></label>
-                                                                                    <input type="number" name="thrid_test" class="form-control" value="{{old('thrid_test')}}">
+                                                                                    <input type="number" name="third_test" class="form-control" value="{{old('third_test')}}">
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="subject"> Quiz <span class="text-danger">*</span></label>

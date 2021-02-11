@@ -96,12 +96,12 @@ class TeacherPageController extends Controller
                 'attendance_score' => 'required | integer| between: 0, 5',
                 'first_test' => 'required | integer| between: 0, 10',
                 'second_test' => 'required | integer| between: 0, 10',
-                'thrid_test' => 'required | integer| between: 0, 10',
+                'third_test' => 'required | integer| between: 0, 10',
                 'quiz' => 'required | integer| between: 0, 5',
                 'exam_score' => 'required | integer| between: 0, 60',
             ]);
 
-            $total_score = $request['attendance_score'] + $request['first_test'] +  $request['second_test'] + $request['thrid_test'] + $request['quiz'] + $request['exam_score'];
+            $total_score = $request['attendance_score'] + $request['first_test'] +  $request['second_test'] + $request['third_test'] + $request['quiz'] + $request['exam_score'];
 
             DB::table('results')->where(
                 'name',
@@ -111,7 +111,7 @@ class TeacherPageController extends Controller
                     'attendance_score' => $request['attendance_score'],
                     'first_test' => $request['first_test'],
                     'second_test' => $request['second_test'],
-                    'thrid_test' => $request['thrid_test'],
+                    'third_test' => $request['third_test'],
                     'quiz' => $request['quiz'],
                     'exam_score' => $request['exam_score'],
                     'total' => $total_score
@@ -124,12 +124,12 @@ class TeacherPageController extends Controller
                 'attendance_score' => 'required | integer| between: 0, 5',
                 'first_test' => 'required | integer| between: 0, 10',
                 'second_test' => 'required | integer| between: 0, 10',
-                'thrid_test' => 'required | integer| between: 0, 10',
+                'third_test' => 'required | integer| between: 0, 10',
                 'quiz' => 'required | integer| between: 0, 5',
                 'exam_score' => 'required | integer| between: 0, 60',
             ]);
 
-            $total_score = $request['attendance_score'] + $request['first_test'] +  $request['second_test'] + $request['thrid_test'] + $request['quiz'] + $request['exam_score'];
+            $total_score = $request['attendance_score'] + $request['first_test'] +  $request['second_test'] + $request['third_test'] + $request['quiz'] + $request['exam_score'];
 
             $edit_marks = Result::create([
                 'name' => $request->input('student_name'),
@@ -138,7 +138,7 @@ class TeacherPageController extends Controller
                 'attendance_score' => $request['attendance_score'],
                 'first_test' => $request['first_test'],
                 'second_test' => $request['second_test'],
-                'thrid_test' => $request['thrid_test'],
+                'third_test' => $request['third_test'],
                 'quiz' => $request['quiz'],
                 'exam_score' => $request['exam_score'],
                 'total' => $total_score,
