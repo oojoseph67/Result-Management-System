@@ -52,23 +52,36 @@
                 <div class="content-side content-side-full">
                     <ul class="nav-main">
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('data-operator.home') }}">
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('admin.home') }}">
                                 <i class="nav-main-link-icon si si-cursor"></i>
                                 <span class="nav-main-link-name">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-main-heading">Mark Management</li>
-                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('manage-marks-dop') }}">
-                                <i class="nav-main-link-icon si si-cursor"></i>
-                                <span class="nav-main-link-name">Manage Marks</span>
+                        <li class="nav-main-heading">Account Management</li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('manage-users') }}">
+                                <i class="nav-main-link-icon si si-user"></i>
+                                <span class="nav-main-link-name">Maintain User Account</span>
                             </a>
                         </li>
                         <li class="nav-main-heading">Result Management</li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('manage-results-dop') }}">
-                                <i class="nav-main-link-icon si si-cursor"></i>
-                                <span class="nav-main-link-name">Manage Result</span>
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('generate-result') }}">
+                                <i class="nav-main-link-icon si si-result"></i>
+                                <span class="nav-main-link-name">Genrate Session Result</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-heading">Calendar Change</li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="">
+                                <i class="nav-main-link-icon si si-calender"></i>
+                                <span class="nav-main-link-name">Change Session</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('reset') }}">
+                                <i class="nav-main-link-icon si si-calender"></i>
+                                <span class="nav-main-link-name">Reset Calendar</span>
                             </a>
                         </li>
                     </ul>
@@ -106,7 +119,7 @@
                         <div class="dropdown d-inline-block ml-2">
                             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="Header Avatar" style="width: 18px;">
-                                <span class="d-none d-sm-inline-block ml-1">{{auth()->user()->name}}</span> <small><b>Data-Operator</b></small>
+                            <span class="d-none d-sm-inline-block ml-1">{{auth()->user()->name}}</span>
                                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">

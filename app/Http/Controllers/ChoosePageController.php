@@ -9,7 +9,9 @@ class ChoosePageController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->role == 'admin') {
+        if (Auth::user()->role == 'super-admin') {
+            return redirect()->route('super-admin.home');
+        } elseif (Auth::user()->role == 'admin') {
             return redirect()->route('admin.home');
         } elseif (Auth::user()->role == 'student') {
             return redirect()->route('student.home');

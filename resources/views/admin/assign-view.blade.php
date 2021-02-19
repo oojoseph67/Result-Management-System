@@ -1,4 +1,4 @@
-@extends('layouts.backend-data-operator')
+@extends('layouts.backend-admin')
 
 @section('css_before')
     <!-- Page JS Plugins CSS -->

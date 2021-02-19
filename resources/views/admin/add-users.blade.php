@@ -64,16 +64,24 @@
                     </div>                    
 
                     <div class="block-content"> 
-                        <div class="row items-push">
-                            <div class="col-lg-8 col-xl-5">
-                                <h4><a href="{{ route('manage-data-operator') }}">Data Operator</a></h4>
-                
-                                <h4><a href="{{ route('manage-teacher') }}">Teacher</a></h4>
-                
-                                <h4><a href="{{ route('manage-student') }}">Student</a></h4>
-                            </div>                            
-                        </div>
+                            {{-- <div class="row items-push">
+                                <div class="col-lg-8 col-xl-5">
+                                    <h4><a href="{{ route('manage-data-operator') }}">Data Operator</a></h4>
+                    
+                                    <h4><a href="{{ route('manage-teacher') }}">Teacher</a></h4>
+                    
+                                    <h4><a href="{{ route('manage-student') }}">Student</a></h4>
+                                </div>                            
+                            </div> --}}
 
+                        <div class="col-lg-8 col-xl-5">
+                            <h4><a href="{{ route('add-data-operator') }}">Add Data Operator</a></h4>
+            
+                            <h4><a href="{{ route('add-teacher') }}">Add Teacher</a></h4>
+            
+                            <h4><a href="{{ route('add-student') }}">Add Student</a></h4>
+                        </div>
+                       
                     </div>
 
 

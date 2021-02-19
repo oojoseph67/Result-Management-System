@@ -1,4 +1,4 @@
-@extends('layouts.backend-admin')
+@extends('layouts.backend-super-admin')
 
 @section('css_before')
     <!-- Page JS Plugins CSS -->
@@ -50,7 +50,7 @@
             </div>
             <div class="block-content">
                 <p class="font-size-sm text-muted">
-                   Welcome Admin
+                   Welcome Super Admin
                 </p>
 
                 <div class="block">
@@ -63,17 +63,41 @@
                             </div>
                     </div>                    
 
+                        <div class="card-box">
+                            @if (session('status'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('status') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+
+                            @if (session('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ session('error') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
+
                     <div class="block-content"> 
                         <div class="row items-push">
                             <div class="col-lg-8 col-xl-5">
-                                <h4><a href="{{ route('manage-data-operator') }}">Data Operator</a></h4>
+                                <h4><a href="{{ route('manage-data-operator-superadmin') }}">Data Operator</a></h4>
                 
-                                <h4><a href="{{ route('manage-teacher') }}">Teacher</a></h4>
+                                <h4><a href="{{ route('manage-teacher-superadmin') }}">Teacher</a></h4>
                 
-                                <h4><a href="{{ route('manage-student') }}">Student</a></h4>
+                                <h4><a href="{{ route('manage-student-superadmin') }}">Student</a></h4>
                             </div>                            
                         </div>
 
+                        <div class="col-lg-8 col-xl-5">                                      
+                            <h4><a href="{{ route('add-admin') }}">Add Admin</a></h4> 
+                        </div>
+                       
                     </div>
 
 

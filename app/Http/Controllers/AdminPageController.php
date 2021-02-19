@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignTeacher;
+use App\Models\User;
 use App\Models\Result;
 use App\Models\AcademicResult;
 use Illuminate\Http\Request;
@@ -12,6 +14,33 @@ use App\Models\Subject;
 
 class AdminPageController extends Controller
 {
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'dob' => ['required', 'date'],
+            'role' => ['required'],
+            'passport' => ['required', 'max:2048'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $store_user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'dob' => $request['dob'],
+            'entry_class' => $request['entry_class'],
+            'current_class' => $request['entry_class'],
+            'role' => $request['role'],
+            'password' => Hash::make($request['password']),
+            'passport_path' => $request['passport']
+        ]);
+
+        $store_user->save();
+        
+        return redirect()->route('manage-users-admin')->withStatus(__($request['name']. ' Has Been Added To Our Database With Role As '. $request['role']));
+    }
+    
     public function manageUsers()
     {
         return view('admin.manage-users');
@@ -50,6 +79,122 @@ class AdminPageController extends Controller
         ]);
     }
 
+    public function createSubjectPage()
+    {
+        $class_data = DB::table('school_classes')->get();
+        $subject_data = DB::table('subjects')->get();
+
+        return view('admin.create-subject', [
+            'class_data' => $class_data,
+            'subject_data' => $subject_data
+        ]);
+    }
+
+    public function createSubjectAction(Request $request)
+    {
+        $subject_data = DB::table('subjects')->get();
+
+        foreach ($subject_data as $data) {
+            if ($request->input('class') == $data->class) {
+                if ($request->input('subject_name') == $data->subject_name) {
+                    return back()->withError(__($request->input('subject_name') . ' Already Exist For ' . $request->input('class')));
+                }
+            }
+        }
+
+        $subject_create = Subject::create([
+            'subject_name' => $request->input('subject_name'),
+            'class' => $request->input('class')
+        ]);
+        $subject_create->save();
+
+        return back()->withStatus(__('Subject Created Successfully'));
+    }
+
+    public function updateSubject(Request $request)
+    {
+        DB::table('subjects')->where(
+            'id',
+            $request->input('id')
+        )->update(
+            [
+                'subject_name' => $request->input('subject_name'),
+                'class' => $request->input('class'),
+            ]
+        );
+
+        return back()->withStatus(__('The Subject ' . $request->input('subject_name') . ' Has Been Updated Successfully'));
+    }
+
+    public function deleteSubject(Request $request)
+    {
+        DB::table('subjects')->where(
+            'id',
+            $request->input('id')
+        )->delete();
+
+        return back()->withStatus(__('The Subject ' . $request->input('subject_name') . ' Has Been Deleted Successfully'));
+    }
+
+    public function assign()
+    {
+        $assigned = DB::table('assign_teachers')->orderBy(
+            'teacher_name', 'asc'
+        )->get();
+
+        $teacher = DB::table('users')->where(
+            'role',
+            'teacher'
+        )->orderBy('name', 'asc')->get();
+
+        $class_data = DB::table('school_classes')->get();
+        $subject_data = DB::table('subjects')->get();
+
+        return view('admin.assign-view', [
+            'teacher' => $teacher,
+            'class_data' => $class_data,
+            'subject_data' => $subject_data,
+            'assigned' => $assigned
+        ]);
+    }
+
+    public function assignAction(Request $request)
+    {
+        $assign_data = DB::table('assign_teachers')->get();
+
+        foreach ($assign_data as $data) {
+            if ($request->input('class') == $data->class) {
+                if ($request->input('subject') == $data->subject_name) {
+                    if ($request->input('teacher') == $data->teacher_name) {
+                        return back()->withError(__($request->input('teacher') . ' Has Already Been Assigned To ' . $request->input('subject') . ' For ' . $request->input('class') . ' '));
+                    }else{
+                        return back()->withError(__($request->input('subject') . ' For ' . $request->input('class') . ' Has Already Been Assigned'));
+                    }
+                }
+            }
+        }
+
+        $assign_create = AssignTeacher::create([
+            'teacher_name' => $request->input('teacher'),
+            'subject_name' => $request->input('subject'),
+            'class' => $request->input('class'),
+        ]);
+
+        $assign_create->save();
+
+        return back()->withStatus(__($request->input('teacher') . ' Assigned To ' . $request->input('subject') . ' For ' . $request->input('class') . ' Successfully'));
+    }
+
+    public function deleteAssign(Request $request)
+    {
+        DB::table('assign_teachers')->where(
+            'id',
+            $request->input('id'),
+        )->delete();
+
+        return back()->withStatus(__($request->input('teacher_name') . ' Has Been Unassigned From ' . $request->input('subject_name') . ' For ' . $request->input('class')));
+    }
+
     public function editUser(Request $request)
     {
         // $request->validate([
@@ -73,7 +218,8 @@ class AdminPageController extends Controller
 
 
         DB::table('users')->where(
-            'id', $request->input('id')
+            'id',
+            $request->input('id')
         )->update(
             [
                 'name' => $request['name'],
@@ -81,7 +227,7 @@ class AdminPageController extends Controller
                 'dob' => $request['dob'],
             ],
         );
-        return back()->withStatus(__($request->input('name') .' Profile Successfully Updated'));
+        return back()->withStatus(__($request->input('name') . ' Profile Successfully Updated'));
     }
 
     public function deleteUser(Request $request)
@@ -93,93 +239,22 @@ class AdminPageController extends Controller
 
         if (Hash::check($input_password, $user_password)) {
             DB::table('users')->where(
-                'id', $request->input('id')
+                'id',
+                $request->input('id')
             )->delete();
 
             if ($role == 'student') {
                 return back()->withStatus(__('Student' . $name . ' profile has been deleted successfully'));
-            }elseif ($role == 'teacher') {
+            } elseif ($role == 'teacher') {
                 return back()->withStatus(__('Teacher ' . $name . ' profile has been deleted successfully'));
-            }elseif ($role == 'data-operator') {
+            } elseif ($role == 'data-operator') {
                 return back()->withStatus(__('Data-Operator ' . $name . ' profile has been deleted successfully'));
             }
-            
         } else {
-            return back()->withError(__('Delete failed.... Not Admin[wrong password]'));
+            return back()->withError(__('Delete failed.... Not data-operator[wrong password]'));
         }
     }
 
-    public function generateResults(Request $request)
-    {
-        $input_password = $request->input('password');
-        $user_password = auth()->user()->password;
-
-        if (Hash::check($input_password, $user_password)) {
-            $results_data = Result::all();
-            if ($results_data->isEmpty()) {
-                return back()->withError(__('Result For '. Auth::user()->session .' Session Has Already Genrated'));
-            } else {
-                $result = DB::table('results')->get();
-
-                foreach ($result as $results)
-                {
-                    $academic_results = AcademicResult::create([
-                        'name' => $results->name,
-                        'class' => $results->class,
-                        'subject_name' => $results->subject_name,
-                        'session' => Auth::user()->session,
-                        'term' => Auth::user()->term,
-                        'attendance_score' => $results->attendance_score,
-                        'first_test' => $results->first_test,
-                        'second_test' => $results->second_test,
-                        'thrid_test' => $results->thrid_test,
-                        'quiz' => $results->quiz,
-                        'exam_score' => $results->exam_score,
-                        'total' => $results->total,
-                    ]);
-
-                    $academic_results->save();
-                }
-
-                DB::table('results')->delete();
-
-                return back()->withStatus(__('Generation of result for the '. Auth::user()->session . ' '. Auth::user()->term . ' was successfully'));
-
-            }
-
-        } else {
-            return back()->withError(__('Generation of result failed.... Not Admin[wrong password]'));
-        }
-    }
-
-    public function reset()
-    {
-        $results_data = Result::all();
-
-        return view('admin.reset', [
-            'results_data' => $results_data
-        ]);
-    }
-
-    public function ResetCalendar(Request $request)
-    {
-        $input_password = $request->input('password');
-        $user_password = auth()->user()->password;
-
-        if (Hash::check($input_password, $user_password)) {
-
-            DB::table('users')->update(
-                [
-                    'session' => $request->input('session'),
-                    'term' => 'First Term'
-                ]
-            );
-
-            return back()->withStatus(__('Reset Successfuly. Current Session is ' . Auth::user()->session . ' And Term ' . Auth::user()->term));
-
-        } else {
-            return back()->withError(__('Rest failed.... Not Admin[wrong password]'));
-        }
-    }
-
+    
+    
 }

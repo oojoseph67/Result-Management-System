@@ -1,4 +1,4 @@
-@extends('layouts.backend-admin')
+@extends('layouts.backend-super-admin')
 
 @section('css_before')
     <!-- Page JS Plugins CSS -->

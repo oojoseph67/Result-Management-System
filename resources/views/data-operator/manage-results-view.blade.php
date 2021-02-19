@@ -74,7 +74,7 @@
                 
                 <!-- Manage Result -->
                     <h2 class="content-heading border-bottom mb-4 pb-2"></h2>
-                    <form action="{{ route('manage-results-class') }}" method="">
+                    <form action="{{ route('manage-results-class-dop') }}" method="">
                         @csrf
                         <div class="row items-push">
                             <div class="col-lg-4">

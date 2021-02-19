@@ -33,7 +33,7 @@
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">School Management</li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="{{ route('manage-results') }}">Manage Result</a>
+                            <a class="link-fx" href="{{ route('manage-results-dop') }}">Manage Result</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
                             <a class="link-fx" href="">Manage {{$name}} Result</a>
@@ -117,7 +117,7 @@
                             <span class="font-w600 font-size-sm">
                                 {{$name}} Average : {{$user_avg}}
                             </span>
-                            <form action="{{ route('print-result') }}">
+                            <form action="{{ route('print-result-dop') }}">
                                 @csrf
                                 <input type="hidden" name="name" value="{{$name}}">
                                 <input type="hidden" name="class" value="{{$class}}">
@@ -153,7 +153,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($result as $data)
+                                        @forelse ($result as $data)
                                             <tr>
                                                 {{-- <td class="text-center">
                                                     <img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar2.jpg') }}" alt="">
@@ -191,7 +191,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="block-content font-size-sm">
-                                                                    <form action="{{ route('edit-marks') }}" method="POST">
+                                                                    <form action="{{ route('edit-marks-dop') }}" method="POST">
                                                                         @csrf
                                                                         <div class="py-3">
                                                                             <h4 class="bolck-title danger">Total score will update after the subjects column has been updated</h4>
@@ -280,7 +280,13 @@
                                                     </div>
                                                 </div>
                                             <!-- END Edit Block Modal -->
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td class="font-size-sm"> <em  class="text-muted"> Class Result For {{$name}} Has Not Been Created </em></td>
+                                                <td class="font-size-sm"> <em  class="text-muted"> Subjects Result For {{$name}} Has Not Been Created </em></td>
+                                                <td class="font-size-sm"> <em  class="text-muted">Edit </em></td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

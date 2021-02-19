@@ -74,7 +74,7 @@
                 
                 <!-- Manage Marks -->
                     <h2 class="content-heading border-bottom mb-4 pb-2"></h2>
-                    <form action="{{ route('manage-marks-class') }}" method="">
+                    <form action="{{ route('manage-marks-class-dop') }}" method="">
                         @csrf
                         <div class="row items-push">
                             <div class="col-lg-4">

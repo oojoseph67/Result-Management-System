@@ -59,29 +59,26 @@
                         </li>
                         <li class="nav-main-heading">Account Management</li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('manage-users') }}">
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('add-users') }}">
+                                <i class="nav-main-link-icon si si-user"></i>
+                                <span class="nav-main-link-name">Add User Account</span>
+                            </a>
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('manage-users-admin') }}">
                                 <i class="nav-main-link-icon si si-user"></i>
                                 <span class="nav-main-link-name">Maintain User Account</span>
                             </a>
                         </li>
-                        <li class="nav-main-heading">Result Management</li>
+                        <li class="nav-main-heading">Subject Management</li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('generate-result') }}">
-                                <i class="nav-main-link-icon si si-result"></i>
-                                <span class="nav-main-link-name">Genrate Session Result</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-heading">Calendar Change</li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="#">
-                                <i class="nav-main-link-icon si si-calender"></i>
-                                <span class="nav-main-link-name">Change Session</span>
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('create-subject') }}">
+                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <span class="nav-main-link-name">Create Subject</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('reset') }}">
-                                <i class="nav-main-link-icon si si-calender"></i>
-                                <span class="nav-main-link-name">Reset Calendar</span>
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('assign-teacher') }}">
+                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <span class="nav-main-link-name">Assign Teachers</span>
                             </a>
                         </li>
                     </ul>

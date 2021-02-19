@@ -1,4 +1,4 @@
-@extends('layouts.backend-data-operator')
+@extends('layouts.backend-super-admin')
 
 @section('css_before')
     <!-- Page JS Plugins CSS -->
@@ -78,7 +78,6 @@
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
                     @endif
-
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -198,7 +197,7 @@
                                                     <div class="modal-dialog modal-sm" role="document">
                                                         <div class="modal-content">
                                                             <div class="block block-themed block-transparent mb-0">
-                                                                <div class="block-header bg-dark">
+                                                                <div class="block-header bg-primary-dark">
                                                                     <h3 class="block-title">Tobias Title</h3>
                                                                     <div class="block-options">
                                                                         <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
@@ -212,7 +211,7 @@
                                                                         Are You Sure You Want To Delete This Teacher <b>{{$data->name}}</b>
                                                                     </p>
                                                                     <div class="modal-footer">
-                                                                        <button type="submit" data-target="#password{{$data->id}}" data-toggle="modal" data-dismiss="modal" class="btn btn-danger">Contine</button>
+                                                                        <button type="submit" data-target="#password{{$data->id}}" data-toggle="modal" data-dismiss="modal" class="btn btn-primary">Contine</button>
                                                                     </div> 
                                                                 </div>
                                                                 <div class="block-content block-content-full text-right border-top">
@@ -227,7 +226,7 @@
                                                     <div class="modal-dialog modal-sm" role="document">
                                                         <div class="modal-content">
                                                             <div class="block block-themed block-transparent mb-0">
-                                                                <div class="block-header bg-danger">
+                                                                <div class="block-header bg-primary-dark">
                                                                     <h3 class="block-title">Tobias Title</h3>
                                                                     <div class="block-options">
                                                                         <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
@@ -257,7 +256,7 @@
                                                                         </div>
 
                                                                          <div class="modal-footer">
-                                                                            <button type="submit" class="btn btn-danger">Delete Data-Operator</button>
+                                                                            <button type="submit" class="btn btn-primary">Delete Data-Operator</button>
                                                                         </div>    
 
                                                                     </form>

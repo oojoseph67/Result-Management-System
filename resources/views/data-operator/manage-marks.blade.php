@@ -155,7 +155,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="block-content font-size-sm">
-                                                                    <form action="{{ route('edit-marks') }}" method="POST">
+                                                                    <form action="{{ route('edit-marks-dop') }}" method="POST">
                                                                         @csrf
                                                                         <div class="py-3">
                                                                             <h4 class="bolck-title danger">Total score will update after the subjects column has been updated</h4>

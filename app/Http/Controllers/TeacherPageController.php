@@ -19,7 +19,7 @@ class TeacherPageController extends Controller
             'teacher_name', Auth::user()->name
         )->get();
         
-        return view('teacher.view-students', [
+        return view('teacher.view-students-view', [
             'teacher' => $teacher_info
         ]);
     }
@@ -32,7 +32,7 @@ class TeacherPageController extends Controller
             'role', 'student'
         )->get();
 
-        return view('teacher.view-students-view',[
+        return view('teacher.view-students',[
             'class' => $request->input('class'),
             'subject_name' => $request->input('subject_name'),
             'students' => $students,
@@ -193,6 +193,11 @@ class TeacherPageController extends Controller
        // return 123;
 
         return back()->withStatus(__('Password Successfully Updated'));
+    }
+
+    public function viewStudentProfile($name)
+    {
+        
     }
 
 }

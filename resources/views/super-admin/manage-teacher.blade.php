@@ -1,4 +1,4 @@
-@extends('layouts.backend-data-operator')
+@extends('layouts.backend-super-admin')
 
 @section('css_before')
     <!-- Page JS Plugins CSS -->
@@ -36,7 +36,7 @@
                             <a class="link-fx" href="{{ route('manage-users') }}">Manage User</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Manage Data Operator</a>
+                            <a class="link-fx" href="">Manage Teacher</a>
                         </li>
                     </ol>
                 </nav>
@@ -50,7 +50,7 @@
         <!-- Your Block -->
         <div class="block">
             <div class="block-header">
-                <h3 class="block-title">Manage Data Operator</h3>
+                <h3 class="block-title">Manage Teacher</h3>
             </div>
             <div class="block-content">
                 
@@ -78,7 +78,6 @@
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
                     @endif
-
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -92,7 +91,7 @@
                 <!-- Full Table -->
                     <div class="block">
                         <div class="block-header">
-                            <h3 class="block-title">List Of Data Operator</h3>
+                            <h3 class="block-title">List Of Teacher</h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option">
                                     <i class="si si-settings"></i>
@@ -114,7 +113,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($dataOperator as $data)
+                                        @foreach ($teacher as $data)
                                             <tr>
                                                 <td class="text-center">
                                                     <img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar2.jpg') }}" alt="">
@@ -144,7 +143,7 @@
                                                         <div class="modal-content">
                                                             <div class="block block-themed block-transparent mb-0">
                                                                 <div class="block-header bg-primary-dark">
-                                                                    <h3 class="block-title">Edit Data Operator Profile</h3>
+                                                                    <h3 class="block-title">Edit Teacher Profile</h3>
                                                                     <div class="block-options">
                                                                         <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
                                                                             <i class="fa fa-fw fa-times"></i>
@@ -177,7 +176,7 @@
                                                                         <div class="form-group row">
                                                                             <div class="col-md-6 col-xl-5">
                                                                                 <button type="submit" class="btn btn-block btn-success">
-                                                                                    <i class="fa fa-fw fa-plus mr-1"></i> Update
+                                                                                    <i class="fa fa-fw fa-plus mr-1"></i> Update Profile
                                                                                 </button>
                                                                             </div>
                                                                         </div>
@@ -198,7 +197,7 @@
                                                     <div class="modal-dialog modal-sm" role="document">
                                                         <div class="modal-content">
                                                             <div class="block block-themed block-transparent mb-0">
-                                                                <div class="block-header bg-danger">
+                                                                <div class="block-header bg-primary-dark">
                                                                     <h3 class="block-title">Tobias Title</h3>
                                                                     <div class="block-options">
                                                                         <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
@@ -209,10 +208,10 @@
                                                                 <div class="block-content font-size-sm">                                                                    
                                                                     <input type="hidden" name="id" value="{{ $data->id }}">
                                                                     <p>
-                                                                        Are You Sure You Want To Delete This Data Operator <b>{{$data->name}}</b>
+                                                                        Are You Sure You Want To Delete This Teacher <b>{{$data->name}}</b>
                                                                     </p>
                                                                     <div class="modal-footer">
-                                                                        <button type="submit" data-target="#password{{$data->id}}" data-toggle="modal" data-dismiss="modal" class="btn btn-danger">Contine</button>
+                                                                        <button type="submit" data-target="#password{{$data->id}}" data-toggle="modal" data-dismiss="modal" class="btn btn-primary">Contine</button>
                                                                     </div> 
                                                                 </div>
                                                                 <div class="block-content block-content-full text-right border-top">
@@ -227,7 +226,7 @@
                                                     <div class="modal-dialog modal-sm" role="document">
                                                         <div class="modal-content">
                                                             <div class="block block-themed block-transparent mb-0">
-                                                                <div class="block-header bg-danger">
+                                                                <div class="block-header bg-primary-dark">
                                                                     <h3 class="block-title">Tobias Title</h3>
                                                                     <div class="block-options">
                                                                         <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
@@ -238,7 +237,7 @@
                                                                 <div class="block-content font-size-sm">                                                                    
                                                                     <input type="hidden" name="id" value="{{ $data->id }}">
                                                                     <p>
-                                                                        Input Password to delete Data Operator <b>{{$data->name}}</b>
+                                                                        Input Password to delete Teacher <b>{{$data->name}}</b>
                                                                     </p>
                                                                     <form action="{{ route('delete-user') }}" method="POST">
                                                                         @csrf
@@ -257,7 +256,7 @@
                                                                         </div>
 
                                                                          <div class="modal-footer">
-                                                                            <button type="submit" class="btn btn-danger">Delete Data-Operator</button>
+                                                                            <button type="submit" class="btn btn-primary">Delete Teacher</button>
                                                                         </div>    
 
                                                                     </form>

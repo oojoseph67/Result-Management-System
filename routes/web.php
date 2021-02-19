@@ -5,7 +5,9 @@ use App\Http\Controllers;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\DataOperatorPageController;
 use App\Http\Controllers\StudentPageController;
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\TeacherPageController;
+use App\Http\Middleware\TeacherMiddleware;
 use FontLib\Table\Type\name;
 
 /*
@@ -30,61 +32,70 @@ Route::view('/login', 'auth.login')->name('login');
 Route::get('/choose', 'ChoosePageController@index')->name('choose');
 
 
+Route::group(['middleware' => ['auth', 'super-admin'], 'prefix' => 'supad'], function () {
+    Route::view('/', 'super-admin.home')->name('super-admin.home');
+
+    Route::view('/add-admin', 'super-admin.add-admin')->name('add-admin');
+    Route::post('/add-admin', [SuperAdminController::class, 'store'])->name('register-admin');
+
+    Route::get('/manage-users', [SuperAdminController::class, 'manageUsers'])->name('manage-users');    
+    Route::get('/manage-data-operator', [SuperAdminController::class, 'manageDataOperator'])->name('manage-data-operator-superadmin');    
+    Route::get('/manage-teacher', [SuperAdminController::class, 'manageTeacher'])->name('manage-teacher-superadmin');
+    Route::get('/manage-student', [SuperAdminController::class, 'manageStudent'])->name('manage-student-superadmin');
+
+    Route::post('/edit-user', [SuperAdminController::class, 'editUser'])->name('edit-user');
+    Route::post('/delete-user', [SuperAdminController::class, 'deleteUser'])->name('delete-user');
+
+    Route::view('/generate-result', 'super-admin.generate-result')->name('generate-result');
+    Route::post('/generate-results', [SuperAdminController::class, 'generateResults'])->name('generate-results');
+
+    Route::get('/reset', [SuperAdminController::class, 'reset'])->name('reset');
+    Route::post('/reset-calendar', [SuperAdminController::class, 'resetCalendar'])->name('reset-calendar');
+});
+
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'ad'], function () {
     Route::view('/', 'admin.home')->name('admin.home');
 
-    Route::get('/manage-users', [AdminPageController::class, 'manageUsers'])->name('manage-users');    
-    Route::get('/manage-data-operator', [AdminPageController::class, 'manageDataOperator'])->name('manage-data-operator');    
+    Route::get('/manage-users', [AdminPageController::class, 'manageUsers'])->name('manage-users-admin');
+    Route::get('/manage-data-operator', [AdminPageController::class, 'manageDataOperator'])->name('manage-data-operator');
     Route::get('/manage-teacher', [AdminPageController::class, 'manageTeacher'])->name('manage-teacher');
     Route::get('/manage-student', [AdminPageController::class, 'manageStudent'])->name('manage-student');
+
+    Route::view('/add-users', 'admin.add-users')->name('add-users');
+    Route::view('/add-data-operator', 'admin.add-data-operator')->name('add-data-operator');
+    Route::view('/add-teacher', 'admin.add-teacher')->name('add-teacher');
+    Route::view('/add-student', 'admin.add')->name('add-student');
+    Route::post('/add.data-operator', [AdminPageController::class, 'store'])->name('register-data-operator');
+    Route::post('/add.teacher', [AdminPageController::class, 'store'])->name('register-teacher');
+    Route::post('/add.student', [AdminPageController::class, 'store'])->name('register-student');
+
+    Route::get('/create-subject', [AdminPageController::class, 'createSubjectPage'])->name('create-subject');
+    Route::get('/create-subject-action', [AdminPageController::class, 'createSubjectAction'])->name('create-action');
+    Route::post('/update-subject', [AdminPageController::class, 'updateSubject'])->name('update-subject');
+    Route::get('/delete-subject', [AdminPageController::class, 'deleteSubject'])->name('delete-subject');
+
+    Route::get('/assign', [AdminPageController::class, 'assign'])->name('assign-teacher');
+    Route::post('/assign-action', [AdminPageController::class, 'assignAction'])->name('assign-action');
+    // Route::post('/update-assign', [AdminPageController::class, 'updateAssign'])->name('update-assign');
+    Route::get('/delete-assign', [AdminPageController::class, 'deleteAssign'])->name('delete-assign');
 
     Route::post('/edit-user', [AdminPageController::class, 'editUser'])->name('edit-user');
     Route::post('/delete-user', [AdminPageController::class, 'deleteUser'])->name('delete-user');
 
-    Route::view('/generate-result', 'admin.generate-result')->name('generate-result');
-    Route::post('/generate-results', [AdminPageController::class, 'generateResults'])->name('generate-results');
-
-    Route::get('/reset', [AdminPageController::class, 'reset'])->name('reset');
-    Route::post('/reset-calendar', [AdminPageController::class, 'resetCalendar'])->name('reset-calendar');
 });
 
 
 Route::group(['middleware' => ['auth', 'data-operator'], 'prefix' => 'dop'], function () {
     Route::view('/', 'data-operator.home')->name('data-operator.home');
 
-    Route::view('/add-data-operator', 'data-operator.add-data-operator')->name('add-data-operator');
-    Route::view('/add-teacher', 'data-operator.add-teacher')->name('add-teacher');
-    Route::view('/add-student', 'data-operator.add')->name('add-student');
-    Route::post('/add.data-operator', [DataOperatorPageController::class, 'store'])->name('register-data-operator');
-    Route::post('/add.teacher', [DataOperatorPageController::class, 'store'])->name('register-teacher');
-    Route::post('/add.student', [DataOperatorPageController::class, 'store'])->name('register-student');
+    Route::get('/manage-marks', [DataOperatorPageController::class, 'manageMarks'])->name('manage-marks-dop');
+    Route::get('/manage-marks-class', [DataOperatorPageController::class, 'manageMarksClass'])->name('manage-marks-class-dop');
+    Route::post('/edit-marks', [DataOperatorPageController::class, 'editMarks'])->name('edit-marks-dop');
 
-    Route::get('/create-subject', [DataOperatorPageController::class, 'createSubjectPage'])->name('create-subject');
-    Route::get('/create-subject-action', [DataOperatorPageController::class, 'createSubjectAction'])->name('create-action');
-    Route::post('/update-subject', [DataOperatorPageController::class, 'updateSubject'])->name('update-subject');
-    Route::get('/delete-subject', [DataOperatorPageController::class, 'deleteSubject'])->name('delete-subject');
-
-    Route::get('/assign', [DataOperatorPageController::class, 'assign'])->name('assign-teacher');
-    Route::post('/assign-action', [DataOperatorPageController::class, 'assignAction'])->name('assign-action');
-    // Route::post('/update-assign', [DataOperatorPageController::class, 'updateAssign'])->name('update-assign');
-    Route::get('/delete-assign', [DataOperatorPageController::class, 'deleteAssign'])->name('delete-assign');
-
-    Route::get('/manage-users', [DataOperatorPageController::class, 'manageUsers'])->name('manage-users');
-    Route::get('/manage-data-operator', [DataOperatorPageController::class, 'manageDataOperator'])->name('manage-data-operator');
-    Route::get('/manage-teacher', [DataOperatorPageController::class, 'manageTeacher'])->name('manage-teacher');
-    Route::get('/manage-student', [DataOperatorPageController::class, 'manageStudent'])->name('manage-student');
-
-    Route::post('/edit-user', [DataOperatorPageController::class, 'editUser'])->name('edit-user');
-    Route::post('/delete-user', [DataOperatorPageController::class, 'deleteUser'])->name('delete-user');
-
-    Route::get('/manage-marks', [DataOperatorPageController::class, 'manageMarks'])->name('manage-marks');
-    Route::get('/manage-marks-class', [DataOperatorPageController::class, 'manageMarksClass'])->name('manage-marks-class');
-    Route::post('/edit-marks', [DataOperatorPageController::class, 'editMarks'])->name('edit-marks');
-
-    Route::get('/manage-results', [DataOperatorPageController::class, 'manageResults'])->name('manage-results');    
-    Route::get('/manage-results-class', [DataOperatorPageController::class, 'manageResults'])->name('manage-results-class');
-    Route::get('/single-result/{class}/{name}', [DataOperatorPageController::class, 'singleResult'])->name('single-result');
-    Route::get('/print-result', [DataOperatorPageController::class, 'printResult'])->name('print-result');
+    Route::get('/manage-results', [DataOperatorPageController::class, 'manageResults'])->name('manage-results-dop');    
+    Route::get('/manage-results-class', [DataOperatorPageController::class, 'manageResults'])->name('manage-results-class-dop');
+    Route::get('/single-result/{class}/{name}', [DataOperatorPageController::class, 'singleResult'])->name('single-result-dop');
+    Route::get('/print-result', [DataOperatorPageController::class, 'printResult'])->name('print-result-dop');
 });
 
 
@@ -98,6 +109,8 @@ Route::group(['middleware' => ['auth', 'teacher'], 'prefix' => 'tea'], function 
     Route::get('/manage-marks-class', [TeacherPageController::class, 'manageMarksClass'])->name('manage-marks-class');
     Route::post('/edit-marks', [TeacherPageController::class, 'editMarks'])->name('edit-marks');
     
+    Route::get('/view-student-profile/{name}', [TeacherPageController::class, 'viewStudentProfile'])->name('view-student-profile');
+
     Route::get('/profile', [TeacherPageController::class, 'profile'])->name('profile');    
     Route::post('/edit-profile', [TeacherPageController::class, 'editProfile'])->name('edit-profile');
     Route::post('/change-password', [TeacherPageController::class, 'changePassword'])->name('change-password');

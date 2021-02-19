@@ -34,6 +34,9 @@
                         <li class="breadcrumb-item" aria-current="page">
                             <a class="link-fx" href="">View Student</a>
                         </li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            <a class="link-fx" href="">List of student for {{$class}} {{$subject_name}} </a>
+                        </li>
                     </ol>
                 </nav>
             </div>
@@ -50,7 +53,7 @@
             </div>
             <div class="block-content">
                 <p class="font-size-sm text-muted">
-                   This is a list of your assigned subjects 
+                   This is a list of students in {{$class}} for {{$subject_name}}
                 </p>
 
                 <div class="card-box">
@@ -84,45 +87,23 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 50px;">#</th>
-                                        <th>Name</th>
-                                        <th>Subject</th>
-                                        <th>Class</th>
-                                        <th class="text-center" style="width: 100px;">Actions</th>
+                                        <th>Techer Name</th>
+                                        <th>Email</th>
+                                        <th>Date Of Birth</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($teacher as $data)
+                                    @forelse($students as $data)
                                         <tr class="table-active">
                                             <th class="text-center" scope="row">#</th>
-                                            <td class="font-w600 font-size-sm">{{$data->teacher_name}}</td>
-                                            <td class="font-w600 font-size-sm">{{$data->subject_name}}</td>
-                                            <td class="font-w600 font-size-sm">{{$data->class}}</td>
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    <div class="btn-group">
-                                                        {{-- <button type="button" class="btn btn-sm btn-primary push" data-toggle="modal" data-target="#edit{{ $data->id }}" title="Edit">
-                                                            <i class="fa fa-fw fa-pencil-alt"></i>
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-danger push" data-toggle="modal" data-target="#delete{{ $data->id }}" title="Delete">
-                                                            <i class="fa fa-fw fa-times"></i>
-                                                        </button> --}}
-                                                        <form action="{{ route('view-student-action') }}">
-                                                            <input type="hidden" name="subject_name" value="{{ $data->subject_name }}">
-                                                            <input type="hidden" name="teacher_name" value="{{ $data->teacher_name }}">
-                                                            <input type="hidden" name="class" value="{{ $data->class }}">
-
-                                                             <div class="form-group">
-                                                                <button type="submit" class="btn btn-block btn-secondary">
-                                                                    <i class="fa fa-fw fa-plus mr-1"></i> View Students
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
+                                            <td class="font-w600 font-size-sm">
+                                                <a href="{{ route('view-student-profile', ['name' => $data->name]) }}">{{$data->name}}</a>
                                             </td>
+                                            <td class="font-w600 font-size-sm">{{$data->email}}</td>
+                                            <td class="font-w600 font-size-sm">{{$data->dob}}</td>
                                         </tr>   
                                     @empty
-                                        <h1>You Are yet To Be Assigned To A Subject. Please Contact The Data_operator For More Information</h1>
+                                        <h1> No Student In {{$class}} For {{$subject_name}} </h1>
                                     @endforelse                                                
                                 </tbody>
                             </table>

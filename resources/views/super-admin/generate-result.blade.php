@@ -1,4 +1,4 @@
-@extends('layouts.backend-data-operator')
+@extends('layouts.backend-super-admin')
 
 @section('css_before')
     <!-- Page JS Plugins CSS -->
@@ -19,7 +19,6 @@
 
     <!-- Page JS Code -->
     <script src="{{ asset('js/oneui.core.min.js') }}"></script>
-    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
 @endsection
 
 @section('content')
@@ -28,13 +27,13 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
-                    Manage <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Users</small>
+                    Main Title <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Subtitle</small>
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">School Management</li>
+                        <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Manage User</a>
+                            <a class="link-fx" href="">Generate Result</a>
                         </li>
                     </ol>
                 </nav>
@@ -48,15 +47,13 @@
         <!-- Your Block -->
         <div class="block">
             <div class="block-header">
-                <h3 class="block-title">Manage Users</h3>
+                <h3 class="block-title">Generate Result</h3>
             </div>
             <div class="block-content">
                 {{-- <p class="font-size-sm text-muted">
-                    Your content..
+                   Welcome Admin
                 </p> --}}
-
-                 <!-- Errror Code -->
-                 <div class="card-box">
+                <div class="card-box">
                     @if (session('status'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('status') }}
@@ -81,7 +78,7 @@
                         </span>
                     @endif
 
-                    @if ($errors->any())
+                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -91,41 +88,56 @@
                         </div>
                     @endif
                 </div>
-                <!-- END Of Errror Code -->
 
-                <div class="block">
-                    <div class="block-header"> 
-                        <h3 class="block-title"> </h3>
-                            <div class="block-options">
-                                <button type="button" class="btn-block-option">
-                                    <i class="si si-settings"></i>
-                                </button>
+                
+                <h4>Generate Result for current session {{Auth::user()->session}} </h4>
+
+                <button type="button" class="btn btn-sm btn-success push" data-toggle="modal" data-target="#generate" title="Generate">
+                    <i class="fa fa-fw fa-plus"></i>
+                </button>
+              
+                <!-- Generate Block Modal -->                                                
+                    <div class="modal" id="generate" tabindex="-1" role="dialog" aria-labelledby="modal-block-extra-large" aria-hidden="true">
+                        <div class="modal-dialog modal-sm-6" role="document">
+                            <div class="modal-content">
+                                <div class="block block-themed block-transparent mb-0">
+                                    <div class="block-header bg-primary-dark">
+                                        <h3 class="block-title">Input Password To Generate Result For {{Auth::user()->session}}</h3>
+                                        <div class="block-options">
+                                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="block-content font-size-sm">
+                                        <form action="{{ route('generate-results') }}" method="POST">
+                                            @csrf 
+                                            <div class="form-group">
+                                                <label for="">Password</label>
+                                                <input type="password" name="password" class="form-control">
+                                                <div class="input-group-append" data-password="false">
+                                                    <div class="input-group-text">
+                                                        <span class="password-eye"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Generate Result</button>
+                                            </div>   
+                                        </form>
+                                    </div>
+                                    <div class="block-content block-content-full text-right border-top">
+                                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                                        {{-- <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button> --}}
+                                    </div>
+                                </div>
                             </div>
-                    </div>                    
-
-                    <div class="block-content"> 
-                        <div class="row items-push">
-                            <div class="col-lg-8 col-xl-5">
-                                <h4><a href="{{ route('manage-data-operator') }}">Data Operator</a></h4>
-                
-                                <h4><a href="{{ route('manage-teacher') }}">Teacher</a></h4>
-                
-                                <h4><a href="{{ route('manage-student') }}">Student</a></h4>
-                            </div>                            
                         </div>
-
-                        <div class="col-lg-8 col-xl-5">
-                            <h4><a href="{{ route('add-data-operator') }}">Add Data Operator</a></h4>
-            
-                            <h4><a href="{{ route('add-teacher') }}">Add Teacher</a></h4>
-            
-                            <h4><a href="{{ route('add-student') }}">Add Student</a></h4>
-                        </div>
-                       
                     </div>
+                <!-- END Generate Block Modal -->
 
 
-                </div>
             </div>
         </div>
         <!-- END Your Block -->
