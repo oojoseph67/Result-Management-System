@@ -117,11 +117,16 @@ Route::group(['middleware' => ['auth', 'teacher'], 'prefix' => 'tea'], function 
 });
 
 Route::group(['middleware' => ['auth', 'student'], 'prefix' => 'stu'], function () {
-    Route::view('/', 'student.home')->name('student.home');
+    Route::get('/', [StudentPageController::class, 'index'])->name('student.home');
 
     Route::get('/profile', [StudentPageController::class, 'profile'])->name('profile');
     Route::post('/edit-profile', [StudentPageController::class, 'editProfile'])->name('edit-profile');
     Route::post('/change-password', [StudentPageController::class, 'changePassword'])->name('change-password');
+
+    Route::get('/current-result', [StudentPageController::class, 'currentResult'])->name('current-result');
+    Route::get('/print-result', [StudentPageController::class, 'printResult'])->name('print-result-stu');
+    Route::get('/previous-result', [StudentPageController::class, 'previousResults'])->name('previous-results');
+    Route::post('/previous-result-action', [StudentPageController::class, 'previousResultAction'])->name('previous-result-action');
 
     // Route::get('/student', function ($id,$code){
     //     session([

@@ -82,7 +82,7 @@
                 <!-- Profile Container -->
                     <main id="main-container">
                         <!-- Hero -->
-                        <div class="bg-image" style="background-image: url('assets/media/photos/photo8@2x.jpg');">
+                        <div class="bg-image" style="background-image: url({{asset('media/photos/photo8@2x.jpg')}});">
                             <div class="bg-black-75">
                                 <div class="content content-full text-center">
                                     <div class="my-3">
@@ -110,13 +110,26 @@
                                         <div class="row push">
                                             <div class="col-lg-4">
                                                 <p class="font-size-sm text-muted">
-                                                    Your account’s vital info. Your username will be publicly visible.
+                                                    Your account’s vital information.
                                                 </p>
                                                 <b>
                                                      <p class="font-size-sm text-muted">
                                                         To change your date of birth please contact the Data Operator                                                   
                                                      </p>
                                                 </b>
+                                                
+                                                <br><br><br>
+
+                                                <b> <h4 class="font-size-sm text-muted">Acadenmic Calender</h4> </b>
+                                                <div class="form-group">
+                                                    <label for="session">Session</label>
+                                                    <input class="form-control" id="session" value="{{Auth::user()->session}}" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="term">Term</label>
+                                                    <input class="form-control" id="term" value="{{Auth::user()->term}}" disabled>
+                                                </div>
+
                                             </div>
                                             <div class="col-lg-8 col-xl-5">
 
@@ -135,7 +148,11 @@
                                                     <input type="email" class="form-control" id="one-profile-edit-dob" name="dob" value="{{Auth::user()->dob}}" disabled>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="one-profile-edit-dob">Class</label>
+                                                    <label for="one-profile-edit-dob">Entry Class</label>
+                                                    <input type="email" class="form-control" id="one-profile-edit-dob" name="dob" value="{{Auth::user()->entry_class}}" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="one-profile-edit-dob">CUrrent Class</label>
                                                     <input type="email" class="form-control" id="one-profile-edit-dob" name="dob" value="{{Auth::user()->current_class}}" disabled>
                                                 </div>
                                                 <div class="form-group">

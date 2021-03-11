@@ -121,9 +121,6 @@
                                 @csrf
                                 <input type="hidden" name="name" value="{{$name}}">
                                 <input type="hidden" name="class" value="{{$class}}">
-                                {{-- <div class="form-group row">
-                                    <a href="" type="submit" class="btn btn-block btn-primary" target="_blank">Proceed To Print</a>
-                                </div> --}}
                                 <div class="form-group row">
                                         <button type="submit" class="btn btn-block btn-primary">
                                             <i class="fa fa-fw fa-plus mr-1"></i> Proceed To Print
@@ -143,10 +140,6 @@
                                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                     <thead>
                                         <tr>
-                                            {{-- <th class="text-center" style="width: 100px;">
-                                                <i class="far fa-user"></i>
-                                            </th> --}}
-                                            {{-- <th>Name</th> --}}
                                             <th style="width: 30%;">Class</th>
                                             <th style="width: 15%;">Subject</th>
                                             <th class="text-center" style="width: 100px;">Actions</th>
@@ -155,12 +148,6 @@
                                     <tbody>
                                         @forelse ($result as $data)
                                             <tr>
-                                                {{-- <td class="text-center">
-                                                    <img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar2.jpg') }}" alt="">
-                                                </td> --}}
-                                                {{-- <td class="font-w600 font-size-sm">
-                                                    <a href="">{{ $data->name }}</a>
-                                                </td> --}}
                                                 <td class="font-size-sm"><em class="text-muted">{{ $data->class }}</em></td>
                                                 <td>
                                                     <span class="badge badge-secondary">{{ $data->subject_name }}</span>

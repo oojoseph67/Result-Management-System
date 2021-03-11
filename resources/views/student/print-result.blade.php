@@ -52,6 +52,7 @@
                             <span class="font-w600 font-size-sm">
                                 Term : {{Auth::user()->term}}
                             </span>
+                            <br>
                             <span class="font-w600 font-size-sm">
                                 Class Average : {{$name}}
                             </span>
