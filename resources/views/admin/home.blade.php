@@ -104,7 +104,7 @@
                                             </div>
                                             <div class="block-content block-content-full">
                                                <div class="list-group text-center">      
-                                                    <br><br><br>
+                                                    <br><br>
                                                     <a href="{{ route('create-subject') }}" class="list-group-item list-group-item-action list-group-item-info">Create Subject</a>
                                                     <br><br>
                                                     <a href="{{ route('assign-teacher') }}" class="list-group-item list-group-item-action list-group-item-warning">Assign Teacher</a>

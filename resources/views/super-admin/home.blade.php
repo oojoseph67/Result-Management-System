@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="block-content block-content-full">
                                                <div class="list-group text-center">      
-                                                    <br><br><br>
+                                                    <br><br>
                                                     <a href="{{ route('change-term') }}" class="list-group-item list-group-item-action list-group-item-light">Change Term</a>
                                                     <br><br>
                                                     <a href="{{ route('reset') }}" class="list-group-item list-group-item-action list-group-item-dark">Reset Calendar</a>

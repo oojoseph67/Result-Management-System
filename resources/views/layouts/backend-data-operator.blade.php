@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+        <title>DataOperator - Result Management System</title>
 
         <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
@@ -40,7 +40,11 @@
                     <a class="font-w600 text-dual" href="/">
                         <i class="fa fa-circle-notch text-primary"></i>
                         <span class="smini-hide">
-                            <span class="font-w700 font-size-h5">ne</span>
+                            <span class="font-w700 font-size-h6">ne</span>
+                        </span>
+                        <br>
+                        <span class="smini-hide">
+                            <span class="font-w700 font-size-h5">DataOperator</span>
                         </span>
                     </a>
                     <!-- END Logo -->
@@ -60,15 +64,22 @@
                         <li class="nav-main-heading">Mark Management</li>
                          <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('manage-marks-dop') }}">
-                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <i class="nav-main-link-icon si si-pencil"></i>
                                 <span class="nav-main-link-name">Manage Marks</span>
                             </a>
                         </li>
                         <li class="nav-main-heading">Result Management</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('manage-results-dop') }}">
-                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <i class="nav-main-link-icon si si-note"></i>
                                 <span class="nav-main-link-name">Manage Result</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-heading">Account Info</li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('profile-dop') }}">
+                                <i class="nav-main-link-icon si si-briefcase"></i>
+                                <span class="nav-main-link-name">Profile</span>
                             </a>
                         </li>
                     </ul>
@@ -115,16 +126,8 @@
                                 </div>
                                 <div class="p-2">
                                     <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('profile-dop') }}">
                                         <span>Profile</span>
-                                        <span>
-                                            <span class="badge badge-pill badge-success">1</span>
-                                            <i class="si si-user ml-1"></i>
-                                        </span>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span>Settings</span>
-                                        <i class="si si-settings"></i>
                                     </a>
                                     <div role="separator" class="dropdown-divider"></div>
                                     <h5 class="dropdown-header text-uppercase">Actions</h5>

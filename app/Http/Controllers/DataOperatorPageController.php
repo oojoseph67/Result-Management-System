@@ -66,7 +66,7 @@ class DataOperatorPageController extends Controller
 
     public function editMarks(Request $request)
     {
-        if (DB::table('results')->where('name', $request->input('student_name'))->exists()) {
+        if (DB::table('results')->where('name', $request->input('student_name'))->where('subject_name', $request->input('subject_name'))->exists()) {
 
             $request->validate([
                 'attendance_score' => 'required | integer| between: 0, 5',
@@ -81,6 +81,8 @@ class DataOperatorPageController extends Controller
 
                 DB::table('results')->where(
                     'name', $request->input('student_name')
+                )->where(
+                    'subject_name', $request->input('subject_name')    
                 )->update(
                     [
                         'attendance_score' => $request['attendance_score'],
@@ -134,6 +136,8 @@ class DataOperatorPageController extends Controller
             'current_class', $request->input('class')
         )->where(
             'role', 'student'
+        )->orderBy(
+            'name', 'asc'
         )->get();
 
         return view('data-operator.manage-results-view',[
@@ -150,7 +154,7 @@ class DataOperatorPageController extends Controller
             'name' ,$name
         )->where(
             'class', $class
-        )->get();
+        )->orderBy('subject_name', 'asc')->get();
 
         $class_avg = DB::table('results')->where(
             'class', $class
@@ -210,5 +214,53 @@ class DataOperatorPageController extends Controller
             'total_in_class' => $total_in_class,
         ]);
     }
+
+    public function profile()
+    {
+        return view('data-operator.profile', [
+            
+        ]);
+    }
+
+    public function editProfile(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+        ]);
+
+        DB::table('users')->where(
+            'id',
+            $request->input('id')
+        )->update(
+            [
+                'name' => $request['name'],
+                'email' => $request['email'],
+            ],
+        );
+
+        return back()->withStatus(__('Profile Successfully Updated'));
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'password' => ['required', 'string', 'min:5', 'confirmed']
+        ]);
+
+        DB::table('users')->where(
+            'id',
+            $request->input('id')
+        )->update(
+            [
+                'password' => Hash::make($request['password'])
+            ],
+        );
+
+        // return 123;
+
+        return back()->withStatus(__('Password Successfully Updated'));
+    }
+
 
 }

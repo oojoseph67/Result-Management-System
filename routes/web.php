@@ -88,7 +88,6 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'ad'], function () 
     Route::get('/profile', [AdminPageController::class, 'profile'])->name('profile-ad');
     Route::post('/edit-profile', [AdminPageController::class, 'editProfile'])->name('edit-profile-ad');
     Route::post('/change-password', [AdminPageController::class, 'changePassword'])->name('change-password-ad');
-
 });
 
 
@@ -103,6 +102,10 @@ Route::group(['middleware' => ['auth', 'data-operator'], 'prefix' => 'dop'], fun
     Route::get('/manage-results-class', [DataOperatorPageController::class, 'manageResults'])->name('manage-results-class-dop');
     Route::get('/single-result/{class}/{name}', [DataOperatorPageController::class, 'singleResult'])->name('single-result-dop');
     Route::get('/print-result', [DataOperatorPageController::class, 'printResult'])->name('print-result-dop');
+
+    Route::get('/profile', [DataOperatorPageController::class, 'profile'])->name('profile-dop');
+    Route::post('/edit-profile', [DataOperatorPageController::class, 'editProfile'])->name('edit-profile-dop');
+    Route::post('/change-password', [DataOperatorPageController::class, 'changePassword'])->name('change-password-dop');
 });
 
 

@@ -27,7 +27,7 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
-                    Manage<small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Marks</small>
+                    Manage Marks
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
@@ -36,7 +36,7 @@
                             <a class="link-fx" href="{{ route('manage-results-dop') }}">Manage Result</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Manage {{$name}} Result</a>
+                            <a class="link-fx" href="">Manage <i>{{$name}}</i> Result</a>
                         </li>
                     </ol>
                 </nav>
@@ -49,9 +49,6 @@
     <div class="content">
         <!-- Your Block -->
         <div class="block">
-            <div class="block-header">
-                <h3 class="block-title">Manage <small>{{$name}}</small> Result</h3>
-            </div>
             <div class="block-content">
 
                 <!-- Errror Code -->
@@ -106,6 +103,14 @@
                             <span class="font-w600 font-size-sm">{{$name}}</span>
                             <br>
                             <img class="img-avatar img-avatar59" src="{{ asset('media/avatars/avatar2.jpg') }}" alt="">
+                            <br>
+                            <span class="font-w600 font-size-sm">
+                                Session : {{Auth::user()->session}}
+                            </span>
+                            <br>
+                            <span class="font-w600 font-size-sm">
+                                Term : {{Auth::user()->term}}
+                            </span>
                             <br>
                             <span class="font-w600 font-size-sm">
                                 Class Average : {{$class_avg}}
@@ -189,61 +194,61 @@
                                                                             
                                                                             @if (DB::table('results')->where('name', $data->name)->where('subject_name', $data->subject_name)->exists())                                                                              
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> Attendance Score <span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> Attendance Score <span class="text-danger">*</span><em> Highest Point Is 5</em></span></label>
                                                                                     <input type="number" name="attendance_score" class="form-control" value="{{$data->attendance_score}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> 1st Test <span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> 1st Test <span class="text-danger">*</span><em> Highest Point Is 10</em></span></label>
                                                                                     <input type="number" name="first_test" class="form-control" value="{{$data->first_test}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> 2nd Test <span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> 2nd Test <span class="text-danger">*</span><em> Highest Point Is 10</em></span></label>
                                                                                     <input type="number" name="second_test" class="form-control" value="{{$data->second_test}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> 3rd Test <span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> 3rd Test <span class="text-danger">*</span><em> Highest Point Is 10</em></span></label>
                                                                                     <input type="number" name="third_test" class="form-control" value="{{$data->third_test}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> Quiz <span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> Quiz <span class="text-danger">*</span><em> Highest Point Is 5</em></span></label>
                                                                                     <input type="number" name="quiz" class="form-control" value="{{$data->quiz}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> Exam Score<span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> Exam Score<span class="text-danger">*</span><em> Highest Point Is 60</em></span></label>
                                                                                     <input type="number" name="exam_score" class="form-control" value="{{$data->exam_score}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> Total <small>Total score shows here</small><span class="text-danger">*</span></label>
-                                                                                    <input type="number" name="total" disabled placeholder="Total score shows here" class="form-control" value="{{$data->total}}">
+                                                                                    <label for="subject"> Total <small>Total score shows here</small><span class="text-danger">*</span><em> Total score is over 100</em></span></label>
+                                                                                    <input type="number" name="total" disabled placeholder="Total score is over 100" class="form-control" value="{{$data->total}}">
                                                                                 </div>                                                                                    
                                                                             @else
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> Attendance Score <span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> Attendance Score <span class="text-danger">*</span><em> Highest Point Is 5</em></span></label>
                                                                                     <input type="number" name="attendance_score" class="form-control" value="{{old('attendance_score')}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> 1st Test <span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> 1st Test <span class="text-danger">*</span><em> Highest Point Is 10</em></span></label>
                                                                                     <input type="number" name="first_test" class="form-control" value="{{old('first_test')}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> 2nd Test <span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> 2nd Test <span class="text-danger">*</span><em> Highest Point Is 10</em></span></label>
                                                                                     <input type="number" name="second_test" class="form-control" value="{{old('second_test')}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> 3rd Test <span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> 3rd Test <span class="text-danger">*</span><em> Highest Point Is 10</em></span></label>
                                                                                     <input type="number" name="third_test" class="form-control" value="{{old('third_test')}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> Quiz <span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> Quiz <span class="text-danger">*</span><em> Highest Point Is 5</em></span></label>
                                                                                     <input type="number" name="quiz" class="form-control" value="{{old('quiz')}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> Exam Score<span class="text-danger">*</span></label>
+                                                                                    <label for="subject"> Exam Score<span class="text-danger">*</span><em> Highest Point Is 60</em></span></label>
                                                                                     <input type="number" name="exam_score" class="form-control" value="{{old('exam_score')}}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="subject"> Total <span class="text-danger">*</span></label>
-                                                                                    <input type="number" name="total" disabled placeholder="Total score shows here" class="form-control">
+                                                                                    <label for="subject"> Total <span class="text-danger">*</span><em> Total score is over 100</em></span></label>
+                                                                                    <input type="number" name="total" disabled placeholder="Total score is over 100" class="form-control">
                                                                                 </div>
                                                                             @endif
                                                                             
@@ -268,11 +273,14 @@
                                                 </div>
                                             <!-- END Edit Block Modal -->
                                         @empty
-                                            <tr>
+                                            {{-- <tr>
                                                 <td class="font-size-sm"> <em  class="text-muted"> Class Result For {{$name}} Has Not Been Created </em></td>
                                                 <td class="font-size-sm"> <em  class="text-muted"> Subjects Result For {{$name}} Has Not Been Created </em></td>
                                                 <td class="font-size-sm"> <em  class="text-muted">Edit </em></td>
-                                            </tr>
+                                            </tr> --}}
+                                            <h1 class="text-center">
+                                                Subjects Results Has Not Been Created
+                                            </h1>
                                         @endforelse
                                     </tbody>
                                 </table>

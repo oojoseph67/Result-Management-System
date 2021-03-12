@@ -54,7 +54,7 @@
                             </span>
                             <br>
                             <span class="font-w600 font-size-sm">
-                                Class Average : {{$name}}
+                                Name : {{$name}}
                             </span>
                             <br>
                             <span class="font-w600 font-size-sm">

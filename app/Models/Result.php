@@ -16,7 +16,7 @@ class Result extends Model
         'attendance_score',
         'first_test',
         'second_test',
-        'thrid_test',
+        'third_test',
         'quiz',
         'exam_score',
         'total',
