@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+        <title>Admin - Result Management System</title>
 
         <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
@@ -61,24 +61,31 @@
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('add-users') }}">
                                 <i class="nav-main-link-icon si si-user"></i>
-                                <span class="nav-main-link-name">Add User Account</span>
+                                <span class="nav-main-link-name">Add User</span>
                             </a>
                             <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('manage-users-admin') }}">
-                                <i class="nav-main-link-icon si si-user"></i>
+                                <i class="nav-main-link-icon si si-people"></i>
                                 <span class="nav-main-link-name">Maintain User Account</span>
                             </a>
                         </li>
                         <li class="nav-main-heading">Subject Management</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('create-subject') }}">
-                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <i class="nav-main-link-icon si si-plus"></i>
                                 <span class="nav-main-link-name">Create Subject</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('assign-teacher') }}">
-                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <i class="nav-main-link-icon si si-wrench"></i>
                                 <span class="nav-main-link-name">Assign Teachers</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-heading">Account Info</li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('profile-ad') }}">
+                                <i class="nav-main-link-icon si si-briefcase"></i>
+                                <span class="nav-main-link-name">Profile</span>
                             </a>
                         </li>
                     </ul>
@@ -125,16 +132,11 @@
                                 </div>
                                 <div class="p-2">
                                     <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('profile-ad') }}">
                                         <span>Profile</span>
                                         <span>
-                                            <span class="badge badge-pill badge-success">1</span>
                                             <i class="si si-user ml-1"></i>
                                         </span>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span>Settings</span>
-                                        <i class="si si-settings"></i>
                                     </a>
                                     <div role="separator" class="dropdown-divider"></div>
                                     <h5 class="dropdown-header text-uppercase">Actions</h5>

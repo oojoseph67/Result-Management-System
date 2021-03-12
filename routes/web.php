@@ -85,6 +85,10 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'ad'], function () 
     Route::post('/edit-user', [AdminPageController::class, 'editUser'])->name('edit-user');
     Route::post('/delete-user', [AdminPageController::class, 'deleteUser'])->name('delete-user');
 
+    Route::get('/profile', [AdminPageController::class, 'profile'])->name('profile-ad');
+    Route::post('/edit-profile', [AdminPageController::class, 'editProfile'])->name('edit-profile-ad');
+    Route::post('/change-password', [AdminPageController::class, 'changePassword'])->name('change-password-ad');
+
 });
 
 
@@ -114,9 +118,9 @@ Route::group(['middleware' => ['auth', 'teacher'], 'prefix' => 'tea'], function 
     
     Route::get('/view-student-profile/{name}', [TeacherPageController::class, 'viewStudentProfile'])->name('view-student-profile');
 
-    Route::get('/profile', [TeacherPageController::class, 'profile'])->name('profile');    
-    Route::post('/edit-profile', [TeacherPageController::class, 'editProfile'])->name('edit-profile');
-    Route::post('/change-password', [TeacherPageController::class, 'changePassword'])->name('change-password');
+    Route::get('/profile', [TeacherPageController::class, 'profile'])->name('profile-tea');    
+    Route::post('/edit-profile', [TeacherPageController::class, 'editProfile'])->name('edit-profile-tea');
+    Route::post('/change-password', [TeacherPageController::class, 'changePassword'])->name('change-password-tea');
 });
 
 Route::group(['middleware' => ['auth', 'student'], 'prefix' => 'stu'], function () {

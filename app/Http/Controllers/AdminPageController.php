@@ -255,6 +255,51 @@ class AdminPageController extends Controller
         }
     }
 
-    
+    public function profile()
+    {
+        return view('admin.profile', [
+
+        ]);
+    }
+
+    public function editProfile(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+        ]);
+
+        DB::table('users')->where(
+            'id',
+            $request->input('id')
+        )->update(
+            [
+                'name' => $request['name'],
+                'email' => $request['email'],
+            ],
+        );
+
+        return back()->withStatus(__('Profile Successfully Updated'));
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'password' => ['required', 'string', 'min:5', 'confirmed']
+        ]);
+
+        DB::table('users')->where(
+            'id',
+            $request->input('id')
+        )->update(
+            [
+                'password' => Hash::make($request['password'])
+            ],
+        );
+
+        // return 123;
+
+        return back()->withStatus(__('Password Successfully Updated'));
+    }
     
 }
