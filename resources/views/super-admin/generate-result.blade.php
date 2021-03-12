@@ -27,7 +27,7 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
-                    Main Title <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Subtitle</small>
+                   Generate Result
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
@@ -46,13 +46,7 @@
     <div class="content">
         <!-- Your Block -->
         <div class="block">
-            <div class="block-header">
-                <h3 class="block-title">Generate Result</h3>
-            </div>
             <div class="block-content">
-                {{-- <p class="font-size-sm text-muted">
-                   Welcome Admin
-                </p> --}}
                 <div class="card-box">
                     @if (session('status'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -89,55 +83,64 @@
                     @endif
                 </div>
 
-                
-                <h4>Generate Result for current session {{Auth::user()->session}} </h4>
+                <div class="row items-push">
+                    <div class="col-lg-4">
+                        {{-- <p class="font-size-sm text-muted">
+                            Select the session and term you would like to view result
+                        </p> --}}
+                    </div>
 
-                <button type="button" class="btn btn-sm btn-success push" data-toggle="modal" data-target="#generate" title="Generate">
-                    <i class="fa fa-fw fa-plus"></i>
-                </button>
-              
-                <!-- Generate Block Modal -->                                                
-                    <div class="modal" id="generate" tabindex="-1" role="dialog" aria-labelledby="modal-block-extra-large" aria-hidden="true">
-                        <div class="modal-dialog modal-sm-6" role="document">
-                            <div class="modal-content">
-                                <div class="block block-themed block-transparent mb-0">
-                                    <div class="block-header bg-primary-dark">
-                                        <h3 class="block-title">Input Password To Generate Result For {{Auth::user()->session}}</h3>
-                                        <div class="block-options">
-                                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                                <i class="fa fa-fw fa-times"></i>
-                                            </button>
+                    <div class="col-lg-8 col-xl-5 text-center">
+                        <h1>Generate <mark>{{Auth::user()->term}}</mark> Result For Current Session {{Auth::user()->session}} </h1>
+
+                        <button type="button" class="btn btn-lg btn-success push" data-toggle="modal" data-target="#generate" title="Generate">
+                            <i class="fa fa-lg fa-plus">   Generate</i>
+                        </button>
+                    </div>                  
+                
+                    <!-- Generate Block Modal -->                                                
+                        <div class="modal" id="generate" tabindex="-1" role="dialog" aria-labelledby="modal-block-extra-large" aria-hidden="true">
+                            <div class="modal-dialog modal-sm-6" role="document">
+                                <div class="modal-content">
+                                    <div class="block block-themed block-transparent mb-0">
+                                        <div class="block-header bg-primary-dark">
+                                            <h3 class="block-title">Input Password To Generate Termly Result For {{Auth::user()->session}}</h3>
+                                            <div class="block-options">
+                                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                                    <i class="fa fa-fw fa-times"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="block-content font-size-sm">
-                                        <form action="{{ route('generate-results') }}" method="POST">
-                                            @csrf 
-                                            <div class="form-group">
-                                                <label for="">Password</label>
-                                                <input type="password" name="password" class="form-control">
-                                                <div class="input-group-append" data-password="false">
-                                                    <div class="input-group-text">
-                                                        <span class="password-eye"></span>
+                                        <div class="block-content font-size-sm">
+                                            <form action="{{ route('generate-results') }}" method="POST">
+                                                @csrf 
+                                                <div class="form-group">
+                                                    <label for="">Password</label>
+                                                    <input type="password" name="password" class="form-control">
+                                                    <div class="input-group-append" data-password="false">
+                                                        <div class="input-group-text">
+                                                            <span class="password-eye"></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Generate Result</button>
-                                            </div>   
-                                        </form>
-                                    </div>
-                                    <div class="block-content block-content-full text-right border-top">
-                                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                                        {{-- <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button> --}}
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Generate Result</button>
+                                                </div>   
+                                            </form>
+                                        </div>
+                                        <div class="block-content block-content-full text-right border-top">
+                                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
+                                            {{-- <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i class="fa fa-check mr-1"></i>Ok</button> --}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <!-- END Generate Block Modal -->
+                    <!-- END Generate Block Modal -->
+                </div>
 
-
+                
             </div>
         </div>
         <!-- END Your Block -->

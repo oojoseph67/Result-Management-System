@@ -33,7 +33,7 @@
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Calender Reset</a>
+                            <a class="link-fx" href="">Change Term</a>
                         </li>
                     </ol>
                 </nav>
@@ -76,12 +76,15 @@
                     @endif
 
                      @if ($errors->any())
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                     @endif
                 </div>
@@ -91,31 +94,34 @@
                 @if ($results_data->isEmpty())
                     <div class="row items-push">
                         <div class="col-lg-4">
-                            <h4> Reset Calendar for current session {{Auth::user()->session}} </h4>
-                            <h5>Current Session <strong>{{Auth::user()->session}}</strong></h5>
+                            <h4> Term Change for Current Session {{Auth::user()->session}} </h4>
+                            <h4>Current Term <i>{{Auth::user()->term}}</i></h4>
                         </div>
                         <div class="col-lg-8 col-xl-5">
-                            <form action="{{ route('reset-calendar') }}" method="POST">
+                            <form action="{{ route('term-change') }}" method="POST">
                                 <div class="form-group">
-                                    <label for="teacher">Input Session<span class="text-danger">*</span></label>
-                                    <input type="text" name="session" class="form-control" placeholder="1234/5678" autocomplete="off" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="subject">Default Term <span class="text-danger">*</span></label>
-                                    <input type="text" name="term" disabled value="First Term" class="form-control">
-                                </div>                           
+                                    <label for="term">Input Term<span class="text-danger">*</span></label>
+                                    <select name="term" id="term" required class="form-control">
+                                        <option value=""><strong>Select Term</strong></option>
+                                        {{-- <option value="First Term">First Term</option> --}}
+                                        <option value="Second Term">Second Term</option>
+                                        <option value="Third Term">Third Term</option>
+                                    </select>
+                                </div>                         
 
-                                <button type="button" class="btn btn-sm btn-secondary push" data-toggle="modal" data-target="#reset" title="Reset">
-                                    <i class="fa fa-fw fa-times"></i> Reset
-                                </button>
-                            
-                                <!-- Reset Block Modal -->                                                
+                                <div class="form-group text-center">
+                                    <button type="button" class="btn btn-sm btn-secondary push" data-toggle="modal" data-target="#reset" title="Reset">
+                                        <i class="fa fa-fw fa-times"></i> Change
+                                    </button>
+                                </div>
+
+                                <!-- Generate Block Modal -->                                                
                                     <div class="modal" id="reset" tabindex="-1" role="dialog" aria-labelledby="modal-block-extra-large" aria-hidden="true">
                                         <div class="modal-dialog modal-sm-6" role="document">
                                             <div class="modal-content">
                                                 <div class="block block-themed block-transparent mb-0">
                                                     <div class="block-header bg-primary-dark">
-                                                        <h3 class="block-title">Input Password To Reset The Calender For {{Auth::user()->session}}</h3>
+                                                        <h3 class="block-title">Input Password To Change Term For {{Auth::user()->session}}</h3>
                                                         <div class="block-options">
                                                             <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
                                                                 <i class="fa fa-fw fa-times"></i>
@@ -125,8 +131,8 @@
                                                     <div class="block-content font-size-sm">
                                                             @csrf 
                                                             <div class="form-group">
-                                                                <label for="">Password</label>
-                                                                <input type="password" name="password" class="form-control">
+                                                                <label for="password">Password</label>
+                                                                <input type="password" id="password" name="password" class="form-control">
                                                                 <div class="input-group-append" data-password="false">
                                                                     <div class="input-group-text">
                                                                         <span class="password-eye"></span>
@@ -135,7 +141,7 @@
                                                             </div>
 
                                                             <div class="modal-footer">
-                                                                <button type="submit" class="btn btn-secondary"> Reset</button>
+                                                                <button type="submit" class="btn btn-secondary"> Change Term</button>
                                                             </div>   
                                                     </div>
                                                     <div class="block-content block-content-full text-right border-top">
@@ -146,12 +152,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                <!-- END Reset Block Modal -->
+                                <!-- END Generate Block Modal -->
                             </form>
                         </div>
                     </div>
                 @else
-                    <h1 class="text-center"> Before Reseting Calendar Generate Result</h1>
+                    <h1 class="text-center"> Before Changing Term Generate Result</h1>
                 @endif
 
             </div>

@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+        {{-- <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title> --}}
+        <title>SuperAdmin - Result Management System</title>
 
         <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
@@ -52,7 +53,7 @@
                 <div class="content-side content-side-full">
                     <ul class="nav-main">
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('admin.home') }}">
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('super-admin.home') }}">
                                 <i class="nav-main-link-icon si si-cursor"></i>
                                 <span class="nav-main-link-name">Dashboard</span>
                             </a>
@@ -60,27 +61,27 @@
                         <li class="nav-main-heading">Account Management</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('manage-users') }}">
-                                <i class="nav-main-link-icon si si-user"></i>
+                                <i class="nav-main-link-icon si si-people"></i>
                                 <span class="nav-main-link-name">Maintain User Account</span>
                             </a>
                         </li>
                         <li class="nav-main-heading">Result Management</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('generate-result') }}">
-                                <i class="nav-main-link-icon si si-result"></i>
-                                <span class="nav-main-link-name">Genrate Session Result</span>
+                                <i class="nav-main-link-icon si si-calculator"></i>
+                                <span class="nav-main-link-name">Genrate Termly Result</span>
                             </a>
                         </li>
                         <li class="nav-main-heading">Calendar Change</li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="">
-                                <i class="nav-main-link-icon si si-calender"></i>
-                                <span class="nav-main-link-name">Change Session</span>
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('change-term') }}">
+                                <i class="nav-main-link-icon si si-book-open"></i>
+                                <span class="nav-main-link-name">Change Term</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('reset') }}">
-                                <i class="nav-main-link-icon si si-calender"></i>
+                                <i class="nav-main-link-icon si si-calendar"></i>
                                 <span class="nav-main-link-name">Reset Calendar</span>
                             </a>
                         </li>
@@ -127,18 +128,6 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span>Profile</span>
-                                        <span>
-                                            <span class="badge badge-pill badge-success">1</span>
-                                            <i class="si si-user ml-1"></i>
-                                        </span>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span>Settings</span>
-                                        <i class="si si-settings"></i>
-                                    </a>
                                     <div role="separator" class="dropdown-divider"></div>
                                     <h5 class="dropdown-header text-uppercase">Actions</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('logout') }}">

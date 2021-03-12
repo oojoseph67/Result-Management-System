@@ -38,7 +38,8 @@ Route::group(['middleware' => ['auth', 'super-admin'], 'prefix' => 'supad'], fun
     Route::view('/add-admin', 'super-admin.add-admin')->name('add-admin');
     Route::post('/add-admin', [SuperAdminController::class, 'store'])->name('register-admin');
 
-    Route::get('/manage-users', [SuperAdminController::class, 'manageUsers'])->name('manage-users');    
+    Route::get('/manage-users', [SuperAdminController::class, 'manageUsers'])->name('manage-users');
+    Route::get('/manage-admin', [SuperAdminController::class, 'manageAdmin'])->name('manage-admin-superadmin');
     Route::get('/manage-data-operator', [SuperAdminController::class, 'manageDataOperator'])->name('manage-data-operator-superadmin');    
     Route::get('/manage-teacher', [SuperAdminController::class, 'manageTeacher'])->name('manage-teacher-superadmin');
     Route::get('/manage-student', [SuperAdminController::class, 'manageStudent'])->name('manage-student-superadmin');
@@ -49,6 +50,8 @@ Route::group(['middleware' => ['auth', 'super-admin'], 'prefix' => 'supad'], fun
     Route::view('/generate-result', 'super-admin.generate-result')->name('generate-result');
     Route::post('/generate-results', [SuperAdminController::class, 'generateResults'])->name('generate-results');
 
+    Route::get('/change-term', [SuperAdminController::class, 'changeTerm'])->name('change-term');
+    Route::post('/change-term-action', [SuperAdminController::class, 'changeTermAction'])->name('term-change');
     Route::get('/reset', [SuperAdminController::class, 'reset'])->name('reset');
     Route::post('/reset-calendar', [SuperAdminController::class, 'resetCalendar'])->name('reset-calendar');
 });

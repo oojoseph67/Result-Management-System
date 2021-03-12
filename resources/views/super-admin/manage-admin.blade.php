@@ -27,7 +27,7 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
-                    Manage Student
+                    Manage Admin
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
@@ -36,7 +36,7 @@
                             <a class="link-fx" href="{{ route('manage-users') }}">Manage User</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Manage Student</a>
+                            <a class="link-fx" href="">Manage Data Operator</a>
                         </li>
                     </ol>
                 </nav>
@@ -75,7 +75,8 @@
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
                     @endif
-                    @if ($errors->any())
+
+                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -85,10 +86,13 @@
                         </div>
                     @endif
                 </div>
+
+
+                
                 <!-- Full Table -->
                     <div class="block">
                         <div class="block-header">
-                            <h3 class="block-title">List Of Student</h3>
+                            <h3 class="block-title">List Of Data Operator</h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option">
                                     <i class="si si-settings"></i>
@@ -110,7 +114,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($student as $data)
+                                        @foreach ($admin as $data)
                                             <tr>
                                                 <td class="text-center">
                                                     <img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar2.jpg') }}" alt="">
@@ -140,7 +144,7 @@
                                                         <div class="modal-content">
                                                             <div class="block block-themed block-transparent mb-0">
                                                                 <div class="block-header bg-primary-dark">
-                                                                    <h3 class="block-title">Edit Data Operator Profile</h3>
+                                                                    <h3 class="block-title">Edit Admin Profile</h3>
                                                                     <div class="block-options">
                                                                         <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
                                                                             <i class="fa fa-fw fa-times"></i>
@@ -173,7 +177,7 @@
                                                                         <div class="form-group row">
                                                                             <div class="col-md-6 col-xl-5">
                                                                                 <button type="submit" class="btn btn-block btn-success">
-                                                                                    <i class="fa fa-fw fa-plus mr-1"></i> Update Profile
+                                                                                    <i class="fa fa-fw fa-plus mr-1"></i> Update
                                                                                 </button>
                                                                             </div>
                                                                         </div>
@@ -205,7 +209,7 @@
                                                                 <div class="block-content font-size-sm">                                                                    
                                                                     <input type="hidden" name="id" value="{{ $data->id }}">
                                                                     <p>
-                                                                        Are You Sure You Want To Delete This Teacher <b>{{$data->name}}</b>
+                                                                        Are You Sure You Want To Delete This Data Operator <b>{{$data->name}}</b>
                                                                     </p>
                                                                     <div class="modal-footer">
                                                                         <button type="submit" data-target="#password{{$data->id}}" data-toggle="modal" data-dismiss="modal" class="btn btn-primary">Contine</button>
@@ -234,7 +238,7 @@
                                                                 <div class="block-content font-size-sm">                                                                    
                                                                     <input type="hidden" name="id" value="{{ $data->id }}">
                                                                     <p>
-                                                                        Input Password to delete Student <b>{{$data->name}}</b>
+                                                                        Input Password to delete Data Operator <b>{{$data->name}}</b>
                                                                     </p>
                                                                     <form action="{{ route('delete-user') }}" method="POST">
                                                                         @csrf

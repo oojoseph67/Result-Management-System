@@ -43,6 +43,18 @@ class SuperAdminController extends Controller
         return view('super-admin.manage-users');
     }
 
+    public function manageAdmin()
+    {
+        $admin = DB::table('users')->where(
+            'role',
+            'admin'
+        )->orderBy('name', 'asc')->get();
+
+        return view('super-admin.manage-admin', [
+            'admin' => $admin
+        ]);
+    }
+
     public function manageDataOperator()
     {
         $dataOperator = DB::table('users')->where(
@@ -161,7 +173,7 @@ class SuperAdminController extends Controller
                         'attendance_score' => $results->attendance_score,
                         'first_test' => $results->first_test,
                         'second_test' => $results->second_test,
-                        'thrid_test' => $results->thrid_test,
+                        'third_test' => $results->third_test,
                         'quiz' => $results->quiz,
                         'exam_score' => $results->exam_score,
                         'total' => $results->total,
@@ -176,6 +188,39 @@ class SuperAdminController extends Controller
             }
         } else {
             return back()->withError(__('Generation of result failed.... Not Admin[wrong password]'));
+        }
+    }
+
+    public function changeTerm()
+    {
+        $results_data = Result::all();
+
+        return view('super-admin.change-term', [
+            'results_data' => $results_data
+        ]);
+    }
+
+    public function changeTermAction(Request $request)
+    {
+        $input_password = $request->input('password');
+        $user_password = auth()->user()->password;
+
+        if (Hash::check($input_password, $user_password)) {
+            if (Auth::user()->term == $request->input('term')) {
+                return back()->withError(__('Rquested Term Change Cannot Be The Same As The Current Term'));
+            }
+            else{
+
+                DB::table('users')->update(
+                    [
+                        'term' => $request->input('term')
+                    ]
+                );
+
+                return back()->withStatus(__('Change Successfuly. Current Term is ' . $request->input('term')));
+            }
+        } else {
+            return back()->withError(__('Change failed.... Not Admin[wrong password]'));
         }
     }
 
@@ -194,15 +239,19 @@ class SuperAdminController extends Controller
         $user_password = auth()->user()->password;
 
         if (Hash::check($input_password, $user_password)) {
+            if (Auth::user()->term == $request->input('term')) {
+                return back()->withError(__('Rquested Session Change Cannot Be The Same As The Current Session'));
+            } else {
 
-            DB::table('users')->update(
-                [
-                    'session' => $request->input('session'),
-                    'term' => 'First Term'
-                ]
-            );
+                DB::table('users')->update(
+                    [
+                        'session' => $request->input('session'),
+                        'term' => 'First Term'
+                    ]
+                );
 
-            return back()->withStatus(__('Reset Successfuly. Current Session is ' . Auth::user()->session . ' And Term ' . Auth::user()->term));
+                return back()->withStatus(__('Reset Successfuly. Current Session is ' . $request->input('session') . ' And Term First Term'));
+            }
         } else {
             return back()->withError(__('Rest failed.... Not Admin[wrong password]'));
         }

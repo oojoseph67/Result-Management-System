@@ -4,9 +4,13 @@
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{ asset('js/plugins/datatables/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/oneui.core.min.css') }}">
 @endsection
 
 @section('js_after')
+    <!-- Page JS Code -->
+    <script src="{{ asset('js/oneui.core.min.js') }}"></script>
+    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
     <!-- Page JS Plugins -->
     <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
@@ -26,7 +30,7 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
-                    Main Title <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Subtitle</small>
+                    Main Title 
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
@@ -45,9 +49,6 @@
     <div class="content">
         <!-- Your Block -->
         <div class="block">
-            <div class="block-header">
-                <h3 class="block-title">Admin Dashboard</h3>
-            </div>
             <div class="block-content">
                 <p class="font-size-sm text-muted">
                    Welcome Admin
