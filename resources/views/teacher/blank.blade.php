@@ -4,9 +4,14 @@
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{ asset('js/plugins/datatables/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/oneui.core.min.css') }}">
 @endsection
 
 @section('js_after')
+    <!-- Page JS Code -->
+    <script src="{{ asset('js/oneui.core.min.js') }}"></script>
+    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+
     <!-- Page JS Plugins -->
     <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>

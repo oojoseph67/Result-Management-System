@@ -41,13 +41,13 @@ class TeacherPageController extends Controller
 
     public function manageMarks()
     {
-        $class_data = DB::table('school_classes')->get();
+       //  $class_data = DB::table('school_classes')->get();
         $subject_data = DB::table('assign_teachers')->where(
             'teacher_name', Auth::user()->name
         )->get();
 
         return view('teacher.manage-marks-view', [
-            'class_data' => $class_data,
+           // 'class_data' => $class_data,
             'subject_data' => $subject_data
         ]);
     }
@@ -90,7 +90,7 @@ class TeacherPageController extends Controller
 
     public function editMarks(Request $request)
     {
-        if (DB::table('results')->where('name', $request->input('student_name'))->exists()) {
+        if (DB::table('results')->where('name', $request->input('student_name'))->where('subject_name', $request->input('subject_name'))->exists()) {
 
             $request->validate([
                 'attendance_score' => 'required | integer| between: 0, 5',
@@ -106,6 +106,9 @@ class TeacherPageController extends Controller
             DB::table('results')->where(
                 'name',
                 $request->input('student_name')
+            )->where(
+                'subject_name',
+                $request->input('subject_name')
             )->update(
                 [
                     'attendance_score' => $request['attendance_score'],

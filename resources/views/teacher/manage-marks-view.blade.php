@@ -27,7 +27,7 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
-                    Manage<small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Marks</small>
+                    Manage Marks
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
@@ -46,9 +46,6 @@
     <div class="content">
         <!-- Your Block -->
         <div class="block">
-            <div class="block-header">
-                <h3 class="block-title">Manage Marks</h3>
-            </div>
             <div class="block-content">
 
                 <div class="card-box">
@@ -81,7 +78,7 @@
                                 <p class="font-size-sm text-muted">
                                    Select the particular class you will like to manage subject marks.
                                 </p>
-                                <small>You can only edit for the subject you are assigned to</small>
+                                <h4>You can only edit for the subject you are assigned to</h4>
                             </div>
                             <div class="col-lg-8 col-xl-5">
                                 <div class="form-group">
@@ -99,9 +96,9 @@
                                     <label for="val-skill">Select Class <span class="text-danger">*</span></label>
                                     <select class="form-control" name="class" required>
                                         <option value="">Please select</option>
-                                        @if( count($class_data)>0 ) 
-                                            @foreach($class_data->all() as $class_view)
-                                                <option value="{{$class_view->class}}">{{$class_view->class}}</option>
+                                        @if( count($subject_data)>0 ) 
+                                            @foreach($subject_data->all() as $subject_view)
+                                                <option value="{{$subject_view->class}}">{{$subject_view->class}}</option>
                                             @endforeach
                                         @endif 
                                     </select>

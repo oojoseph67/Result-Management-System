@@ -93,15 +93,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $count = 1; 
+                                    @endphp
                                     @forelse($students as $data)
                                         <tr class="table-active">
-                                            <th class="text-center" scope="row">#</th>
+                                            <th class="text-center" scope="row">{{$count}}</th>
                                             <td class="font-w600 font-size-sm">
                                                 <a href="{{ route('view-student-profile', ['name' => $data->name]) }}">{{$data->name}}</a>
                                             </td>
                                             <td class="font-w600 font-size-sm">{{$data->email}}</td>
                                             <td class="font-w600 font-size-sm">{{$data->dob}}</td>
                                         </tr>   
+                                        @php
+                                            $count++;
+                                        @endphp
                                     @empty
                                         <h1> No Student In {{$class}} For {{$subject_name}} </h1>
                                     @endforelse                                                

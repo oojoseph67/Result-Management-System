@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+        <title>Teacher - Result Management System</title>
 
         <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
@@ -38,9 +38,13 @@
                 <div class="content-header bg-white-5">
                     <!-- Logo -->
                     <a class="font-w600 text-dual" href="/">
-                        <i class="fa fa-circle-notch text-primary"></i>
+                         <i class="fa fa-circle-notch text-primary"></i>
                         <span class="smini-hide">
-                            <span class="font-w700 font-size-h5">ne</span>
+                            <span class="font-w700 font-size-h6">ne</span>
+                        </span>
+                        <br>
+                        <span class="smini-hide">
+                            <span class="font-w700 font-size-h5">Teacher</span>
                         </span>
                     </a>
                     <!-- END Logo -->
@@ -60,14 +64,14 @@
                         <li class="nav-main-heading">View Records</li>
                         <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                             <a class="nav-main-link nav-main-link" href="{{ route('view-students') }}">
-                                <i class="nav-main-link-icon si si-bulb"></i>
+                                <i class="nav-main-link-icon si si-docs"></i>
                                 <span class="nav-main-link-name">View Students</span>
                             </a>
                         </li>
                         <li class="nav-main-heading">School Management</li>
                         <li class="nav-main-item open">
                             <a class="nav-main-link" href="{{ route('manage-marks') }}">
-                                <i class="nav-main-link-icon si si-globe"></i>
+                                <i class="nav-main-link-icon si si-pencil"></i>
                                 <span class="nav-main-link-name">Manage Marks</span>
                             </a>
                             {{-- <a class="nav-main-link" href="{{ route('manage-results') }}">
@@ -77,8 +81,8 @@
                         </li>
                         <li class="nav-main-heading">Profile</li>
                         <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                            <a class="nav-main-link nav-main-link" href="{{ route('profile') }}">
-                                <i class="nav-main-link-icon si si-bulb"></i>
+                            <a class="nav-main-link nav-main-link" href="{{ route('profile-tea') }}">
+                                <i class="nav-main-link-icon si si-briefcase"></i>
                                 <span class="nav-main-link-name">Profile</span>
                             </a>
                         </li>
@@ -126,16 +130,8 @@
                                 </div>
                                 <div class="p-2">
                                     <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('profile-tea') }}">
                                         <span>Profile</span>
-                                        <span>
-                                            <span class="badge badge-pill badge-success">1</span>
-                                            <i class="si si-user ml-1"></i>
-                                        </span>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span>Settings</span>
-                                        <i class="si si-settings"></i>
                                     </a>
                                     <div role="separator" class="dropdown-divider"></div>
                                     <h5 class="dropdown-header text-uppercase">Actions</h5>

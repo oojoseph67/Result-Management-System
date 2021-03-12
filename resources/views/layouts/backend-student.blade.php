@@ -65,18 +65,18 @@
                         <li class="nav-main-heading">School Management</li>
                         <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                             <a class="nav-main-link nav-main-link" href="{{ route('current-result') }}">
-                                <i class="nav-main-link-icon si si-bulb"></i>
+                                <i class="nav-main-link-icon si si-note"></i>
                                 <span class="nav-main-link-name">Current Result</span>
                             </a>
                             <a class="nav-main-link nav-main-link" href="{{ route('previous-results') }}">
-                                <i class="nav-main-link-icon si si-bulb"></i>
+                                <i class="nav-main-link-icon si si-drawer"></i>
                                 <span class="nav-main-link-name">Previous Results</span>
                             </a>
                         </li>
                         <li class="nav-main-heading">Profile</li>
                         <li class="nav-main-item open">
                             <a class="nav-main-link" href=" {{ route('profile') }} ">
-                                <i class="nav-main-link-icon si si-globe"></i>
+                                <i class="nav-main-link-icon si si-briefcase"></i>
                                 <span class="nav-main-link-name">Profile</span>
                             </a>
                         </li>

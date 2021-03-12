@@ -26,7 +26,7 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
-                    View <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Student</small>
+                    View Student
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
@@ -45,14 +45,7 @@
     <div class="content">
         <!-- Your Block -->
         <div class="block">
-            <div class="block-header">
-                <h3 class="block-title">Block Title</h3>
-            </div>
             <div class="block-content">
-                <p class="font-size-sm text-muted">
-                   This is a of student taking your subject 
-                </p>
-
                 <div class="card-box">
                     @if (session('status'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -77,24 +70,25 @@
                     <h2 class="content-heading border-bottom mb-4 pb-2"></h2>
                     <div class="block">
                         <div class="block-header">
-                            <h3 class="block-title">List Of Subject</h3>
+                            <h3 class="block-title">Select The Subject You Would Like To See Students</h3>
                         </div>
                         <div class="block-content">
                             <table class="table table-borderless table-vcenter table-hover">
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 50px;">#</th>
-                                        <th>Teacher Name</th>
                                         <th>Subject</th>
                                         <th>Class</th>
                                         <th class="text-center" style="width: 100px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $count = 1; 
+                                    @endphp
                                     @forelse($teacher as $data)
                                         <tr class="table-active">
-                                            <th class="text-center" scope="row">#</th>
-                                            <td class="font-w600 font-size-sm">{{$data->teacher_name}}</td>
+                                            <th class="text-center" scope="row">{{$count}}</th>
                                             <td class="font-w600 font-size-sm">{{$data->subject_name}}</td>
                                             <td class="font-w600 font-size-sm">{{$data->class}}</td>
                                             <td class="text-center">
@@ -112,7 +106,7 @@
                                                             <input type="hidden" name="class" value="{{ $data->class }}">
 
                                                              <div class="form-group">
-                                                                <button type="submit" class="btn btn-block btn-secondary">
+                                                                <button type="submit" class="btn btn-sm btn-block btn-secondary">
                                                                     <i class="fa fa-fw fa-plus mr-1"></i> View Students
                                                                 </button>
                                                             </div>
@@ -121,6 +115,9 @@
                                                 </div>
                                             </td>
                                         </tr>   
+                                        @php
+                                            $count++;
+                                        @endphp
                                     @empty
                                         <h1>You Are yet To Be Assigned To A Subject. Please Contact The Data_operator For More Information</h1>
                                     @endforelse                                                

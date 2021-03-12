@@ -166,35 +166,34 @@
                                                                                     @if ($result_data->name == $data->name)
                                                                                         @if ($result_data->subject_name == $subject_name)
                                                                                             <div class="form-group">
-                                                                                                <label for="subject"> Attendance Score <span class="text-danger">*</span><em> Highest Point Is 5</em></span></label>
+                                                                                                <label for="subject"> Attendance Score <span class="text-danger">*</span> <span class="text-danger"><em> Highest Point Is 5</em></span></label>
                                                                                                 <input type="number" name="attendance_score" class="form-control" value="{{$result_data->attendance_score}}">
                                                                                             </div>
                                                                                             <div class="form-group">
-                                                                                                <label for="subject"> 1st Test <span class="text-danger">*</span><em> Highest Point Is 10</em></span></label>
+                                                                                                <label for="subject"> 1st Test <span class="text-danger">*</span> <span class="text-danger"><em> Highest Point Is 10</em></span></label>
                                                                                                 <input type="number" name="first_test" class="form-control" value="{{$result_data->first_test}}">
                                                                                             </div>
                                                                                             <div class="form-group">
-                                                                                                <label for="subject"> 2nd Test <span class="text-danger">*</span><em> Highest Point Is 10</em></span></label>
+                                                                                                <label for="subject"> 2nd Test <span class="text-danger">*</span> <span class="text-danger"><em> Highest Point Is 10</em></span></label>
                                                                                                 <input type="number" name="second_test" class="form-control" value="{{$result_data->second_test}}">
                                                                                             </div>
                                                                                             <div class="form-group">
-                                                                                                <label for="subject"> 3rd Test <span class="text-danger">*</span><em> Highest Point Is 10</em></span></label>
+                                                                                                <label for="subject"> 3rd Test <span class="text-danger">*</span> <span class="text-danger"><em> Highest Point Is 10</em></span></label>
                                                                                                 <input type="number" name="third_test" class="form-control" value="{{$result_data->third_test}}">
                                                                                             </div>
                                                                                             <div class="form-group">
-                                                                                                <label for="subject"> Quiz <span class="text-danger">*</span><em> Highest Value Is 5</em></span></label>
+                                                                                                <label for="subject"> Quiz <span class="text-danger">*</span> <span class="text-danger"><em> Highest Value Is 5</em></span></label>
                                                                                                 <input type="number" name="quiz" class="form-control" value="{{$result_data->quiz}}">
                                                                                             </div>
                                                                                             <div class="form-group">
-                                                                                                <label for="subject"> Exam Score<span class="text-danger">*</span><em> Highest Point Is 60</em></span></label>
+                                                                                                <label for="subject"> Exam Score<span class="text-danger">*</span> <span class="text-danger"><em> Highest Point Is 60</em></span></label>
                                                                                                 <input type="number" name="exam_score" class="form-control" value="{{$result_data->exam_score}}">
                                                                                             </div>
                                                                                             <div class="form-group">
-                                                                                                <label for="subject"> Total <small>Total score shows here</small><span class="text-danger">*</span> <em> Total score is over 100</em></span></label>
+                                                                                                <label for="subject"> Total <small>Total score shows here</small><span class="text-danger">*</span> <span class="text-danger"><em> Total score is over 100</em></span></label>
                                                                                                 <input type="number" name="total" disabled placeholder="Total score is over 100" class="form-control" value="{{$result_data->total}}">
                                                                                             </div>
-                                                                                        @endif
-                                                                                        
+                                                                                        @endif                                                                                        
                                                                                     @endif                                                                               
                                                                                 @endforeach
                                                                             @else
