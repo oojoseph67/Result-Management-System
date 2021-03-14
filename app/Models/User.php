@@ -23,6 +23,8 @@ class User extends Authenticatable
         'dob',
         'entry_class',
         'current_class',
+        'session',
+        'term',
         'passport_path',
         'role'
     ];
