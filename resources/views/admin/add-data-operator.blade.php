@@ -50,8 +50,9 @@
 
             <div class="form-row">
                 <div class="form-group col-xl-7">
-                    <label for="example-flatpickr-custom">Date Of Birth</label>
-                    <input type="date" class="js-flatpickr form-control bg-white" id="example-flatpickr-custom" name="dob" :value="old('dob')" placeholder="Y-m-d" data-date-format="d-m-Y">
+                    <x-label for="example-flatpickr-custom" :value="__('Date Of Birth')" />
+                    {{-- <label for="example-flatpickr-custom">Date Of Birth</label> --}}
+                    <x-input type="date" class="block mt-1 w-full js-flatpickr form-control bg-white" id="example-flatpickr-custom" name="dob" :value="old('dob')" placeholder="Y-m-d" data-date-format="d-m-Y" />
                 </div>
             </div>
 
@@ -59,8 +60,9 @@
 
             <div class="form-row">
                 <div class="form-group col-xl-7">
-                    <label for="passport">Passport</label>
-                    <input type="file" name="passport">
+                    <x-label for="passport" :value="__('Passport')" />
+                    {{-- <label for="passport">Passport</label> --}}
+                    <x-input class="block mt-1 w-full" type="file" name="passport" />
                 </div>
             </div>
 
